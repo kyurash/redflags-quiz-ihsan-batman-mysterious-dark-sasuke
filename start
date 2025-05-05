@@ -41,7 +41,7 @@
   <script>
     function startQuiz() {
       // Redirect to quiz page
-      window.location.href = 'https://kyurash.github.io/redflags-quiz-ihsan-hpi-dark-sasuke/'; // Change this URL to your quiz page
+      window.location.href = url('https://kyurash.github.io/redflags-quiz-ihsan-hpi-dark-sasuke/'); // Change this URL to your quiz page
     }
   </script>
 </body>
