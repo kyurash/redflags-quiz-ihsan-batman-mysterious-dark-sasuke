@@ -76,6 +76,10 @@
     }
   </style>
 <style>
+.option {
+  margin-bottom: 10px;
+  text-align: left;
+}
   body {
     font-family: "Comic Sans MS", cursive, sans-serif;
     background-color: #ffe4f0;
