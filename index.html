@@ -1,135 +1,67 @@
-<!DOCTYPE html>
+DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🍓Lil Red Flag Quiz🍓</title>
+  <title>Lil Red Flag Quiz</title>
   <style>
     body {
-      font-family: 'Comic Sans MS', sans-serif;
-      background-color: #ffe6f1;
-      color: #ff66b2;
+      font-family: Arial, sans-serif;
+      background-color: #fff3f8;
+      color: #4a4a4a;
       text-align: center;
-      margin: 0;
-      padding: 0;
-      font-size: 16px;
+      padding: 50px;
     }
-
-    h1 {
-      color: #ff3366;
-      font-size: 2.5rem;
-      margin: 40px 20px 10px;
-    }
-
-    h2 {
-      color: #ff3366;
-      font-size: 1.5rem;
-      margin: 20px 0 10px;
-    }
-
-    #start-button {
-      background-color: #ff66b2;
-      border: none;
-      padding: 15px 30px;
-      color: white;
-      font-size: 1.5rem;
-      border-radius: 25px;
-      cursor: pointer;
-      margin-top: 20px;
-    }
-
-    #start-button:hover {
-      background-color: #ff3366;
-    }
-
-    #quiz-container {
-      background-color: #f9ccff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      margin: 20px auto;
-      width: 90%;
-      max-width: 500px;
-    }
-
-    .question {
-      background-color: #ffffff;
-      padding: 12px;
-      border-radius: 6px;
-      margin-bottom: 15px;
-      border: 1px solid #ff66b2;
-    }
-
-    label {
-      font-size: 1rem;
-      margin-left: 6px;
-      color: #ff3366;
-    }
-
-    input[type="radio"] {
-      margin-right: 6px;
-      cursor: pointer;
-    }
-
-    #submit-button {
-      background-color: #ff66b2;
-      border: none;
-      padding: 10px 20px;
-      color: white;
-      font-size: 1.25rem;
+    .container {
+      background-color: white;
+      padding: 40px;
       border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      max-width: 600px;
+      margin: auto;
+    }
+    h1 {
+      color: #e60073;
+    }
+    button {
+      background-color: #e60073;
+      color: white;
+      padding: 12px 25px;
+      font-size: 18px;
+      border: none;
+      border-radius: 6px;
       cursor: pointer;
       margin-top: 20px;
     }
-
-    #submit-button:hover {
-      background-color: #ff3366;
+    button:hover {
+      background-color: #cc005f;
     }
-
-    #results {
-      background-color: #fff0f5;
-      padding: 12px;
-      border-radius: 6px;
-      margin-top: 20px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    .question {
+      margin-bottom: 30px;
     }
-
-    .strawberry {
-      width: 50px;
-      height: 50px;
-      margin: 10px auto;
+    .question h2 {
+      font-size: 22px;
+      margin-bottom: 15px;
     }
-
-    img.strawberry {
-      width: 100%;
-      height: auto;
+    .answer {
+      margin: 10px 0;
+      text-align: left;
     }
   </style>
 </head>
 <body>
-  <h1>🍓 Welcome to the Red Flag Quiz! 🍓</h1>
-  <button id="start-button" onclick="startQuiz()">Let's gooo ↓</button>
+  <div class="container">
+    <h1>Lil Red Flag Quiz</h1>
+    <p>Find out what your *lil red flags* are in relationships.</p>
+    <button id="start-button" onclick="startQuiz()">Let’s gooo</button>
 
-  <div id="quiz-container" style="display: none;">
-  
-    <button id="submit-button" onclick="submitQuiz()">Submit</button>
-    <div id="results"></div>
-    <div class="strawberry">
+    <div id="quiz-container" style="display:none;">
+      <div id="quiz-form"></div>
+      <button id="submit-button" onclick="submitQuiz()">Submit</button>
     </div>
+
+    <div id="results"></div>
   </div>
-
   <script>
-    function startQuiz() {
-      document.getElementById('start-button').style.display = 'none';
-      document.getElementById('const questions').style.display = 'block';
-  const questions
-    }
-
-    function submitQuiz() {
-      document.getElementById('const results').innerText = 'Thanks for taking the quiz!';
-   const results
-    }
-
     const questions = [
         {
     question: "How do you react when someone you are close to cancels plans at the last minute?",
@@ -365,67 +297,25 @@
       "🍓Boundary Issues": 0
     };
 
-   function loadQuiz() {
-      const quizContainer = document.getElementById('quiz-form');
-      questions.forEach((question, index) => {
-        const questionDiv = document.createElement('div');
-        questionDiv.classList.add('question');
+    function showResults() {
+      document.getElementById('quiz-form').innerHTML = '';
+      document.getElementById('submit-button').style.display = 'none';
 
-        const questionTitle = document.createElement('h2');
-        questionTitle.textContent = question.question;
-        questionDiv.appendChild(questionTitle);
+      const resultsDiv = document.getElementById('results');
+      const categoryCounts = {};
 
-        question.answers.forEach((answer, answerIndex) => {
-          const answerLabel = document.createElement('label');
-          answerLabel.textContent = answer;
-
-          const answerInput = document.createElement('input');
-          answerInput.type = 'radio';
-          answerInput.name = `question${index}`;
-          answerInput.value = answerIndex + 1;
-
-          answerLabel.prepend(answerInput);
-          questionDiv.appendChild(answerLabel);
-        });
-
-        quizContainer.appendChild(questionDiv);
-      });
-    }
-
-    function calculateResults() {
-      const formData = new FormData(document.getElementById('quiz-form'));
-      formData.forEach((value, key) => {
-        const questionIndex = parseInt(key.replace('question', ''));
-        const selectedAnswerIndex = parseInt(value) - 1;
-
-        questions[questionIndex].categories.forEach(category => {
-          results[category] += selectedAnswerIndex + 1;
-        });
+      userAnswers.forEach((answerIndex, i) => {
+        const category = questions[i].categories[answerIndex];
+        categoryCounts[category] = (categoryCounts[category] || 0) + 1;
       });
 
-      displayResults();
+      let resultHTML = '<h2>Your Lil Red Flags</h2>';
+      for (let [cat, count] of Object.entries(categoryCounts)) {
+        resultHTML += `<p><strong>${cat}</strong>: ${count}</p>`;
+      }
+
+      resultsDiv.innerHTML = resultHTML;
     }
-
-    function displayResults() {
-      const resultsContainer = document.getElementById('results');
-      resultsContainer.innerHTML = '<h3>Your Results:</h3>';
-
-      Object.keys(results).forEach(category => {
-        const categoryResult = results[category];
-        const percentage = (categoryResult / (questions.length * 4)) * 100;
-
-        resultsContainer.innerHTML += `
-          <p>${category}: ${percentage.toFixed(2)}%</p>
-        `;
-      });
-    }
-
-    document.getElementById('submit-button').addEventListener('click', (event) => {
-      event.preventDefault();
-      calculateResults();
-    });
-
-    loadQuiz();
   </script>
 </body>
 </html>
