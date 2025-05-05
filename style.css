@@ -13,8 +13,6 @@
       margin: 0;
       padding: 0;
       font-size: 0.45rem;
-      transform: scale(0.5);
-      transform-origin: top left;
     }
     h1, h2 {
       color: #ff3366;
@@ -72,7 +70,7 @@
       left: 10px;
       width: 30px;
       height: 30px;
-      background-image: url('https://www.example.com/strawberry.png');
+      background-image: <a>https://i.pinimg.com/736x/41/6a/8b/416a8b6f2c999520b281bbe56bbcef41.jpg<a>;
       background-size: contain;
       background-repeat: no-repeat;
     }
