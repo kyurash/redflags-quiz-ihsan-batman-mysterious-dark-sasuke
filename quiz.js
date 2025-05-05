@@ -55,17 +55,17 @@ const questions = [
     categories: ["Gaslighting Tendencies", "Manipulativeness", "Inconsistent Behavior", "Control Issues"]
   },
   {
-    question: "How do you feel if someone doesn’t check in with you or communicate after a significant period of time?",
+    question: "How do you feel if someone close to you doesn’t check in with you or communicate after a significant period of time?",
     answers: ["I feel abandoned and anxious.", "I understand they might be busy.", "I feel ignored and start to overthink.", "I feel neutral about it and don't worry."],
     categories: ["Inconsistent Behavior", "Hypersensitivity to Rejection", "Control Issues", "Emotional Availability"]
   },
   {
-    question: "Do you feel insecure or frustrated if people around you aren’t openly sharing their feelings with you?",
+    question: "Do you feel frustrated if people around you aren’t openly sharing their feelings with you?",
     answers: ["Yes, I feel disconnected and unsure of where I stand.", "No, I respect their privacy.", "Sometimes, I want more openness.", "I feel neutral about it."],
     categories: ["Hypersensitivity to Rejection", "Trust Issues", "Fantasy-Prone", "Quick Attachment"]
   },
   {
-    question: "Do you feel annoyed if someone you're close to doesn't post about you on social media?",
+    question: "Do you feel annoyed if someone your partner (assuming you both are active onlive) to doesn't post about you on social media?",
     answers: ["Yes, I feel ignored and unimportant.", "No, I don’t care about social media.", "Sometimes, I wonder if they’re hiding something.", "I feel fine either way."],
     categories: ["Jealousy", "Control Issues", "Inconsistent Behavior", "Narcissism"]
   },
@@ -109,7 +109,6 @@ const questions = [
     answers: ["Yes, I find it difficult to open up.", "No, I’m comfortable sharing my emotions.", "Sometimes, I find it hard to trust them.", "I prefer to keep my emotions private."],
     categories: ["Emotional Unavailability", "Avoidant Attachment", "Trust Issues", "Quick Attachment"]
   },
-  // Add more questions as needed (up to 40)
 ];
 
 const results = {
