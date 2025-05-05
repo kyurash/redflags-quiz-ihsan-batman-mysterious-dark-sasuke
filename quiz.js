@@ -109,6 +109,106 @@ const questions = [
     answers: ["Yes, I find it difficult to open up.", "No, I’m comfortable sharing my emotions.", "Sometimes, I find it hard to trust them.", "I prefer to keep my emotions private."],
     categories: ["Emotional Unavailability", "Avoidant Attachment", "Trust Issues", "Quick Attachment"]
   },
+  {
+    question: "How do you feel when someone ignores your calls or messages for a day or two?",
+    answers: ["I feel neglected and anxious.", "I understand that people get busy.", "I get worried they are avoiding me.", "I try to not take it personally."],
+    categories: ["Hypersensitivity to Rejection", "Trust Issues", "Emotional Availability", "Inconsistent Behavior"]
+  },
+  {
+    question: "Do you find it difficult to trust people who don’t share everything with you?",
+    answers: ["Yes, I feel like they have something to hide.", "No, I respect people's privacy.", "Sometimes, I wish they’d be more open.", "I feel okay with them having boundaries."],
+    categories: ["Trust Issues", "Emotional Availability", "Fantasy-Prone", "Avoidant Attachment"]
+  },
+  {
+    question: "If someone doesn't apologize for something that bothers you, do you hold it against them?",
+    answers: ["Yes, I feel resentful and don't let it go.", "No, I can forgive without needing an apology.", "Sometimes, but I try to move on quickly.", "I feel hurt but don’t bring it up."],
+    categories: ["Control Issues", "Lack of Empathy", "Inconsistent Behavior", "Aggressive Conflict Style"]
+  },
+  {
+    question: "Do you ever feel like people don’t appreciate your efforts or the things you do for them?",
+    answers: ["Yes, I feel unappreciated and undervalued.", "No, I don't expect appreciation all the time.", "Sometimes, I wish they’d acknowledge my efforts.", "I try not to expect anything in return."],
+    categories: ["Narcissism", "Lack of Empathy", "Emotional Availability", "Dismissive of Red Flags"]
+  },
+  {
+    question: "Do you often find yourself creating unrealistic expectations of others, even when they haven’t done anything to suggest it?",
+    answers: ["Yes, I tend to imagine what I want them to be.", "No, I try to keep expectations realistic.", "Sometimes, but I try to manage my thoughts.", "I only create expectations based on their actions."],
+    categories: ["Fantasy-Prone", "Quick Attachment", "Narcissism", "Hypersensitivity to Rejection"]
+  },
+  {
+    question: "How do you react when someone doesn't seem to meet your emotional needs consistently?",
+    answers: ["I feel hurt and neglected.", "I try to communicate my needs and move on.", "I get upset but try to be understanding.", "I withdraw emotionally and distance myself."],
+    categories: ["Emotional Availability", "Control Issues", "Lack of Empathy", "Inconsistent Behavior"]
+  },
+  {
+    question: "How often do you feel that people around you aren't being honest with you, even without clear evidence?",
+    answers: ["All the time, I suspect people aren't being truthful.", "Rarely, I trust people’s honesty.", "Sometimes, I feel like they might be hiding things.", "I don't assume things without proof."],
+    categories: ["Trust Issues", "Gaslighting Tendencies", "Hypersensitivity to Rejection", "Narcissism"]
+  },
+  {
+    question: "Do you tend to ignore or dismiss people's feelings if they don't align with your perspective?",
+    answers: ["Yes, I feel that my way is the right way.", "No, I try to understand others’ feelings.", "Sometimes, I ignore them if I feel misunderstood.", "I try to be empathetic but struggle at times."],
+    categories: ["Lack of Empathy", "Narcissism", "Control Issues", "Aggressive Conflict Style"]
+  },
+  {
+    question: "Do you feel the need to constantly reassure someone you are close to that you care about them?",
+    answers: ["Yes, I need to reassure them to avoid anxiety.", "No, I believe actions speak louder than words.", "Sometimes, I express my feelings verbally.", "I only reassure them when it's needed."],
+    categories: ["Quick Attachment", "Hypersensitivity to Rejection", "Narcissism", "Inconsistent Behavior"]
+  },
+  {
+    question: "How do you feel when someone shows more interest in their hobbies or friends than in spending time with you?",
+    answers: ["I feel jealous and upset.", "I understand that people have other interests.", "I get anxious and question their feelings.", "I try to focus on my own hobbies as well."],
+    categories: ["Jealousy", "Trust Issues", "Inconsistent Behavior", "Hypersensitivity to Rejection"]
+  },
+  {
+    question: "Do you often feel the need to control how others react to your behavior or actions?",
+    answers: ["Yes, I like to be in control of situations.", "No, I let others react as they will.", "Sometimes, I try to influence their reactions.", "I don’t feel the need to control them."],
+    categories: ["Control Issues", "Manipulativeness", "Narcissism", "Aggressive Conflict Style"]
+  },
+  {
+    question: "How do you feel when someone you trust tells you something that makes you uncomfortable?",
+    answers: ["I feel betrayed and question their motives.", "I appreciate their honesty and process it.", "I feel uneasy but try to understand.", "I feel fine, even if it's uncomfortable."],
+    categories: ["Trust Issues", "Lack of Empathy", "Gaslighting Tendencies", "Inconsistent Behavior"]
+  },
+  {
+    question: "If someone points out something you’ve done wrong, do you usually accept responsibility?",
+    answers: ["I tend to get defensive and justify myself.", "I try to acknowledge my mistake and apologize.", "I feel embarrassed but own up to it.", "I don’t usually admit fault easily."],
+    categories: ["Lack of Accountability", "Narcissism", "Aggressive Conflict Style", "Gaslighting Tendencies"]
+  },
+  {
+    question: "When you get upset, do you tend to express your feelings or keep them to yourself?",
+    answers: ["I bottle up my feelings and avoid confrontation.", "I express myself but in a calm and respectful manner.", "I get angry and say what’s on my mind.", "I try to calm down and then express my feelings."],
+    categories: ["Aggressive Conflict Style", "Emotional Unavailability", "Lack of Empathy", "Narcissism"]
+  },
+  {
+    question: "Do you frequently feel the urge to be the center of attention in social situations?",
+    answers: ["Yes, I love being the center of attention.", "No, I’m comfortable being in the background.", "Sometimes, I enjoy attention but don’t seek it out.", "I feel awkward being the center of attention."],
+    categories: ["Narcissism", "Control Issues", "Jealousy", "Fantasy-Prone"]
+  },
+  {
+    question: "How do you react when your personal boundaries are crossed by someone else?",
+    answers: ["I feel angry and lash out.", "I calmly assert my boundaries and move on.", "I feel frustrated but don’t address it.", "I try to avoid conflict and let it slide."],
+    categories: ["Boundary Issues", "Aggressive Conflict Style", "Lack of Empathy", "Narcissism"]
+  },
+  {
+    question: "Do you feel emotionally drained after spending time with certain people, even if you enjoy their company?",
+    answers: ["Yes, I often feel exhausted and overwhelmed.", "No, I feel energized and happy.", "Sometimes, but I try to understand why.", "I usually feel fine after spending time with them."],
+    categories: ["Emotional Unavailability", "Lack of Empathy", "Control Issues", "Dismissive of Red Flags"]
+  },
+  {
+    question: "When you have a problem, do you prefer to deal with it alone or seek support from others?",
+    answers: ["I prefer to solve problems on my own.", "I like seeking support when I’m struggling.", "Sometimes, I deal with it alone but ask for help if needed.", "I feel uncomfortable asking for help."],
+    categories: ["Avoidant Attachment", "Emotional Unavailability", "Hypersensitivity to Rejection", "Emotional Availability"]
+  },
+  {
+    question: "Do you find it hard to forgive someone after they’ve done something that hurt you?",
+    answers: ["Yes, I hold grudges and find it difficult to move on.", "No, I forgive quickly and let it go.", "Sometimes, I forgive but don’t forget.", "I try to forgive but struggle with it."],
+    categories: ["Narcissism", "Aggressive Conflict Style", "Lack of Empathy", "Inconsistent Behavior"]
+  },
+  {
+    question: "Do you feel more comfortable when people agree with your views and opinions?",
+    answers: ["Yes, I like to be validated by others.", "No, I value diverse perspectives.", "Sometimes, I feel uneasy when others disagree.", "I’m okay with disagreement as long as it’s respectful."],
+    categories: ["Narcissism", "Jealousy", "Aggressive Conflict Style", "Lack of Empathy"]
+  }
 ];
 
 const results = {
