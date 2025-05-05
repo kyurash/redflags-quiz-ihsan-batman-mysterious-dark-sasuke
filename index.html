@@ -7,118 +7,136 @@
   <style>
     body {
       font-family: 'Comic Sans MS', sans-serif;
-      background-color: #ffe6f1; /* Light pink */
-      color: #ff66b2; /* Strawberry pink */
+      background-color: #ffe6f1;
+      color: #ff66b2;
       text-align: center;
       margin: 0;
       padding: 0;
+      font-size: 16px;
     }
+
     h1 {
       color: #ff3366;
-      font-size: 5rem;
-      margin-top: 20px;
-      padding-top: 20%;
+      font-size: 2.5rem;
+      margin: 40px 20px 10px;
     }
+
+    h2 {
+      color: #ff3366;
+      font-size: 1.5rem;
+      margin: 20px 0 10px;
+    }
+
     #start-button {
       background-color: #ff66b2;
       border: none;
       padding: 15px 30px;
       color: white;
-      font-size: 2rem;
+      font-size: 1.5rem;
       border-radius: 25px;
       cursor: pointer;
-      margin-top: 30px;
+      margin-top: 20px;
     }
+
     #start-button:hover {
       background-color: #ff3366;
     }
-  </style>
-</head>
-<body>
-  <h1>🍓 Welcome to the redflag quiz! 🍓</h1>
-  <button id="start-button" onclick="startQuiz()">Let's gooo↓</button>
 
-  </script>
-</body>
-</html>
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🍓Lil Red Flag Quiz🍓</title>
-  <style>
-    body {
-      font-family: 'Comic Sans MS', sans-serif;
-      background-color: #fce6f1;
-      color: #ff66b2;
-      text-align: center;
-      margin: 0;
-      padding: 0;
-      font-size: 4rem;
-      transform: scale(0.5);
-      transform-origin: top left;
-    }
-    h1, h2 {
-      color: #ff3366;
-      font-size: 2rem;
-      margin-bottom: 5px;
-    }
     #quiz-container {
       background-color: #f9ccff;
-      padding: 10px;
-      border-radius: 6px;
+      padding: 20px;
+      border-radius: 8px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      margin: 10px auto;
+      margin: 20px auto;
       width: 90%;
-      max-width: 600px;
-      <img src="https://i.pinimg.com/736x/41/6a/8b/416a8b6f2c999520b281bbe56bbcef41.jpg" alt="Strawberry" />
+      max-width: 500px;
     }
+
     .question {
       background-color: #ffffff;
-      padding: 6px;
-      border-radius: 4px;
-      margin-bottom: 8px;
+      padding: 12px;
+      border-radius: 6px;
+      margin-bottom: 15px;
       border: 1px solid #ff66b2;
     }
+
     label {
-      font-size: 1.5rem;
+      font-size: 1rem;
       margin-left: 6px;
       color: #ff3366;
     }
+
     input[type="radio"] {
-      margin-right: 4px;
+      margin-right: 6px;
       cursor: pointer;
     }
+
     #submit-button {
       background-color: #ff66b2;
       border: none;
-      padding: 6px 12px;
+      padding: 10px 20px;
       color: white;
-      font-size: 2rem;
+      font-size: 1.25rem;
       border-radius: 12px;
       cursor: pointer;
-      margin-top: 12px;
+      margin-top: 20px;
     }
+
     #submit-button:hover {
       background-color: #ff3366;
     }
+
     #results {
       background-color: #fff0f5;
       padding: 12px;
       border-radius: 6px;
-      margin-top: 15px;
+      margin-top: 20px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
+
     .strawberry {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      width: 30px;
-      height: 30px;
-      background-image: url('https://www.example.com/strawberry.png');
-      background-size: contain;
-      background-repeat: no-repeat;
+      width: 50px;
+      height: 50px;
+      margin: 10px auto;
     }
+
+    img.strawberry {
+      width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>🍓 Welcome to the Red Flag Quiz! 🍓</h1>
+  <button id="start-button" onclick="startQuiz()">Let's gooo ↓</button>
+
+  <div id="quiz-container" style="display: none;">
+    <h2>Question 1</h2>
+    <div class="question">
+      <input type="radio" name="q1" value="a" id="q1a"><label for="q1a">Option A</label><br>
+      <input type="radio" name="q1" value="b" id="q1b"><label for="q1b">Option B</label>
+    </div>
+
+    <button id="submit-button" onclick="submitQuiz()">Submit</button>
+    <div id="results"></div>
+    <div class="strawberry">
+      <img class="strawberry" src="https://i.pinimg.com/736x/41/6a/8b/416a8b6f2c999520b281bbe56bbcef41.jpg" alt="Strawberry" />
+    </div>
+  </div>
+
+  <script>
+    function startQuiz() {
+      document.getElementById('start-button').style.display = 'none';
+      document.getElementById('quiz-container').style.display = 'block';
+    }
+
+    function submitQuiz() {
+      document.getElementById('results').innerText = 'Thanks for taking the quiz!';
+    }
+  </script>
+</body>
+</html>
+r
   </style>
 </head>
 <body>
