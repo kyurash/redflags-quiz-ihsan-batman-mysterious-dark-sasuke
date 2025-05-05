@@ -242,3 +242,4 @@ document.getElementById("submit-button").addEventListener("click", function(even
   const resultsDiv = document.getElementById("results");
   resultsDiv.innerHTML = `You answered ${percentage}% of the questions correctly.`;
 });
+]
