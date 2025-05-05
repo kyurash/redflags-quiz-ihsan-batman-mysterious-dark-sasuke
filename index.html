@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🎀🎀🎀</title></title>
+  <title>🍓Lil Red Flag Quiz🍓</title>
   <style>
     body {
       font-family: 'Comic Sans MS', sans-serif;
@@ -50,25 +50,6 @@
       margin: 20px auto;
       width: 90%;
       max-width: 500px;
-      <div id="quiz-container" style="display: none;">
-  <h2>Question 1</h2>
-  <div class="question">
-    <div class="option">
-      <input type="radio" name="q1" value="a" id="q1a">
-      <label for="q1a">Option A</label>
-    </div>
-    <div class="option">
-      <input type="radio" name="q1" value="b" id="q1b">
-      <label for="q1b">Option B</label>
-    </div>
-  </div>
-
-  <button id="submit-button" onclick="submitQuiz()">Submit</button>
-  <div id="results"></div>
-  <div class="strawberry">
-    <img class="strawberry" src="https://i.pinimg.com/736x/41/6a/8b/416a8b6f2c999520b281bbe56bbcef41.jpg" alt="Strawberry" />
-  </div>
-</div>
     }
 
     .question {
@@ -127,7 +108,7 @@
 </head>
 <body>
   <h1>🍓 Welcome to the Red Flag Quiz! 🍓</h1>
-  <button id="start" onclick=>Let's gooo ↓</button>
+  <button id="start-button" onclick="startQuiz()">Let's gooo ↓</button>
 
   <div id="quiz-container" style="display: none;">
     <h2>Question 1</h2>
@@ -138,21 +119,22 @@
 
     <button id="submit-button" onclick="submitQuiz()">Submit</button>
     <div id="results"></div>
+    <div class="strawberry">
+      <img class="strawberry" src="https://i.pinimg.com/736x/41/6a/8b/416a8b6f2c999520b281bbe56bbcef41.jpg" alt="Strawberry" />
+    </div>
+  </div>
+
+  <script>
+    function startQuiz() {
+      document.getElementById('start-button').style.display = 'none';
+      document.getElementById('quiz-container').style.display = 'block';
+    }
+
+    function submitQuiz() {
+      document.getElementById('results').innerText = 'Thanks for taking the quiz!';
+    }
   </script>
 </body>
-</html>
-r
-  </style>
-</head>
-<body>
-  <div class="strawberry"></div>
-  <h1>🍓Lil Red Flag Quiz🍓</h1>
-  <div id="quiz-container">
-    <form id="quiz-form"></form>
-    <button id="submit-button">Submit🎀</button>
-  </div>
-  <div id="results"></div>
-
 </html>
 
   <script>
