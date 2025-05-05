@@ -209,7 +209,6 @@ const questions = [
     answers: ["Yes, I like to be validated by others.", "No, I value diverse perspectives.", "Sometimes, I feel uneasy when others disagree.", "I’m okay with disagreement as long as it’s respectful."],
     categories: ["Narcissism", "Jealousy", "Aggressive Conflict Style", "Lack of Empathy"]
   }
-];
 
 const results = {
   "Inconsistent Behavior": 0,
