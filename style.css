@@ -15,19 +15,19 @@ h1, h2 {
 
 #quiz-container {
   background-color: #ffccff; /* Soft pink background */
-  padding: 20px;
-  border-radius: 20px;
+  padding: 10px;
+  border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin: 30px auto;
+  margin: 20px auto;
   width: 80%;
   max-width: 600px;
 }
 
 .question {
   background-color: #ffffff;
-  padding: 15px;
-  border-radius: 10px;
-  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
   border: 1px solid #ff66b2;
 }
 
