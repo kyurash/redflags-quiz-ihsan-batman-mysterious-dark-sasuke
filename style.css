@@ -24,7 +24,7 @@
     #quiz-container {
       background-color: #f9ccff;
       padding: 10px;
-      border-radius: 6px;
+      border-radius: 8px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       margin: 10px auto;
       width: 90%;
@@ -32,7 +32,7 @@
     }
     .question {
       background-color: #ffffff;
-      padding: 6px;
+      padding: 8px;
       border-radius: 4px;
       margin-bottom: 8px;
       border: 1px solid #ff66b2;
