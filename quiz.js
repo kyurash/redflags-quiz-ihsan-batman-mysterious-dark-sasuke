@@ -1,96 +1,218 @@
+// Red flag categories
+const redFlags = {
+  "Lack of Empathy": 0,
+  "Controlling Behavior": 0,
+  "Dishonesty": 0,
+  "Disrespect for Boundaries": 0,
+  "Jealousy": 0,
+  "Narcissism": 0,
+  "Manipulation": 0,
+  "Disregard for Others' Feelings": 0,
+  "Impulsivity": 0,
+  "Avoiding Responsibility": 0,
+  "Abuse": 0,
+  "Insecure Attachment": 0,
+  "Gaslighting": 0,
+  "Overly Secretive": 0,
+  "Inconsistent Behavior": 0,
+  "Substance Abuse": 0,
+  "Aggressive Behavior": 0,
+  "Excessive Dependency": 0,
+  "Refusal to Grow": 0
+};
+
+// List of questions
 const questions = [
-  { text: "You're on a date and they make a joke at your expense in front of others. When you bring it up, they say you're overreacting. How likely are you to let it slide?", category: "Gaslighting" },
-  { text: "Imagine someone refuses to take responsibility for something clearly their fault. They twist it to make it seem like your problem. How uncomfortable would you feel?", category: "Blame Shifting" },
-  { text: "Someone insists that if you cared about them, you'd give up a hobby you love. How acceptable does that feel to you?", category: "Control" },
-  { text: "You're asked to share your passwords 'to prove your trust.' How willing would you be?", category: "Privacy Violation" },
-  { text: "A person keeps score in the relationship, always reminding you of things they've done for you. How manipulative does that feel?", category: "Emotional Manipulation" },
-  { text: "They get angry when you want to spend time alone or with friends. How much would that bother you?", category: "Isolation" },
-  { text: "When you talk about boundaries, they say you're being 'too uptight.' How dismissive does that feel?", category: "Boundary Violations" },
-  { text: "They comment negatively on your appearance but say it's just honesty. How acceptable is that?", category: "Negging" },
-  { text: "You notice they never apologize, even when clearly wrong. How problematic is this to you?", category: "Lack of Accountability" },
-  { text: "They make you feel guilty for spending money on yourself. How much of a red flag is that for you?", category: "Financial Control" },
-  { text: "Someone demands immediate responses to texts and gets upset if you don't reply quickly. How normal does this feel?", category: "Possessiveness" },
-  { text: "You're pressured into doing something physical you're not ready for. How concerning is that?", category: "Coercion" },
-  { text: "They compare you negatively to their exes. How much would that affect you emotionally?", category: "Verbal Abuse" },
-  { text: "They often joke about 'trading you in' or 'finding someone better.' How acceptable does that sound?", category: "Disrespect" },
-  { text: "You notice they often exaggerate or lie about small things. How much does this impact your trust?", category: "Dishonesty" },
-  { text: "They downplay your career or dreams as unrealistic. How would that make you feel?", category: "Sabotage" },
-  { text: "You find out they snooped through your phone without asking. How serious is that to you?", category: "Invasion of Privacy" },
-  { text: "They tell you you're lucky they even date you. How manipulative does that feel?", category: "Low Self-Worth Induction" },
-  { text: "They flirt with others in front of you to make you jealous. How likely are you to tolerate it?", category: "Attention-Seeking" },
-  { text: "They make every serious conversation into a joke or avoid it. How damaging is that to connection?", category: "Emotional Unavailability" },
-  { text: "You're told that your friendships are threatening the relationship. How likely are you to cut people off?", category: "Control" },
-  { text: "They withhold affection or praise when you upset them. How manipulative does that feel?", category: "Emotional Withholding" },
-  { text: "They say 'If you loved me, you'd...' regularly to get what they want. How troubling is that?", category: "Manipulation" },
-  { text: "They act overly charming early on, but switch quickly to criticism. How concerned would you be?", category: "Love Bombing" },
-  { text: "They ignore your texts for days but get upset if you do the same. How acceptable is that?", category: "Double Standards" },
-  { text: "They deny things they said or did, even when you clearly remember. How does that affect you?", category: "Gaslighting" },
-  { text: "They act differently in public than in private, being sweet to others and cold to you. How alarming is that?", category: "Two-Faced Behavior" },
-  { text: "You notice they subtly mock your interests. How hurtful does that feel?", category: "Disrespect" },
-  { text: "They act offended when you express independent opinions. How comfortable does that feel?", category: "Intolerance of Difference" },
-  { text: "They pressure you to move in or commit very quickly. How likely are you to feel rushed?", category: "Rushing Intimacy" },
-  { text: "They tell personal details about you to others without your consent. How invasive is that?", category: "Violation of Trust" },
-  { text: "They expect you to drop everything for them, even when it's unreasonable. How demanding is that?", category: "Entitlement" },
-  { text: "They threaten self-harm if you leave or disagree. How dangerous does that seem?", category: "Emotional Blackmail" },
-  { text: "They never ask how you feel about things. How emotionally unavailable does that seem?", category: "Self-Centeredness" },
-  { text: "They blame all their exes for past issues, never reflecting on their own part. How much does that raise concerns?", category: "Blame Shifting" },
-  { text: "They always talk over you or redirect the conversation back to themselves. How annoying is that?", category: "Lack of Respect" },
-  { text: "They minimize or laugh at your fears or insecurities. How would that make you feel?", category: "Invalidation" },
-  { text: "They only reach out when they need something. How transactional does that feel?", category: "Using Behavior" },
-  { text: "They ignore your stated limits or push back when you express them. How threatening is that?", category: "Boundary Violations" },
-  { text: "They expect you to change for them but never adapt themselves. How one-sided does that seem?", category: "Narcissism" }
+  {
+    question: "Do you often avoid taking responsibility for your actions?",
+    answers: [
+      { label: "Yes, I avoid it often.", flag: "Avoiding Responsibility", points: 2 },
+      { label: "Sometimes, depending on the situation.", flag: "Avoiding Responsibility", points: 1 },
+      { label: "No, I try to take responsibility.", flag: "Avoiding Responsibility", points: 0 }
+    ]
+  },
+  {
+    question: "How often do you feel like you have to control others?",
+    answers: [
+      { label: "Very often.", flag: "Controlling Behavior", points: 2 },
+      { label: "Sometimes, but I try to control less.", flag: "Controlling Behavior", points: 1 },
+      { label: "Never, I try to be flexible.", flag: "Controlling Behavior", points: 0 }
+    ]
+  },
+  {
+    question: "Do you often disregard other people's feelings?",
+    answers: [
+      { label: "Yes, I don't think about how my actions affect others.", flag: "Disregard for Others' Feelings", points: 2 },
+      { label: "Sometimes, but I try to consider others.", flag: "Disregard for Others' Feelings", points: 1 },
+      { label: "No, I always try to be considerate.", flag: "Disregard for Others' Feelings", points: 0 }
+    ]
+  },
+  {
+    question: "Do you lie to protect yourself from consequences?",
+    answers: [
+      { label: "Yes, I do it often.", flag: "Dishonesty", points: 2 },
+      { label: "Sometimes, when it's necessary.", flag: "Dishonesty", points: 1 },
+      { label: "No, I try to be honest.", flag: "Dishonesty", points: 0 }
+    ]
+  },
+  {
+    question: "Do you find it hard to apologize, even when you know you are wrong?",
+    answers: [
+      { label: "Yes, I struggle with it.", flag: "Narcissism", points: 2 },
+      { label: "Sometimes, but I try to apologize when I should.", flag: "Narcissism", points: 1 },
+      { label: "No, I apologize quickly when I'm wrong.", flag: "Narcissism", points: 0 }
+    ]
+  },
+  {
+    question: "How often do you make others feel guilty for your own mistakes?",
+    answers: [
+      { label: "Often, I try to avoid blame.", flag: "Manipulation", points: 2 },
+      { label: "Sometimes, if I’m cornered.", flag: "Manipulation", points: 1 },
+      { label: "Never, I take responsibility for my actions.", flag: "Manipulation", points: 0 }
+    ]
+  },
+  {
+    question: "Do you find yourself getting easily jealous when others succeed?",
+    answers: [
+      { label: "Yes, I feel envious often.", flag: "Jealousy", points: 2 },
+      { label: "Sometimes, but I try to control it.", flag: "Jealousy", points: 1 },
+      { label: "No, I am genuinely happy for others.", flag: "Jealousy", points: 0 }
+    ]
+  },
+  {
+    question: "Are you often dismissive of others' opinions, especially if they contradict yours?",
+    answers: [
+      { label: "Yes, I dismiss others easily.", flag: "Narcissism", points: 2 },
+      { label: "Sometimes, if I think I’m right.", flag: "Narcissism", points: 1 },
+      { label: "No, I value others’ opinions.", flag: "Narcissism", points: 0 }
+    ]
+  },
+  {
+    question: "How frequently do you avoid addressing issues that bother you?",
+    answers: [
+      { label: "I avoid them all the time.", flag: "Avoiding Responsibility", points: 2 },
+      { label: "Sometimes, but I try to deal with issues.", flag: "Avoiding Responsibility", points: 1 },
+      { label: "I address issues immediately.", flag: "Avoiding Responsibility", points: 0 }
+    ]
+  },
+  {
+    question: "Do you feel the need to dominate others to feel better about yourself?",
+    answers: [
+      { label: "Yes, I often try to control others.", flag: "Controlling Behavior", points: 2 },
+      { label: "Sometimes, but I’m aware of it.", flag: "Controlling Behavior", points: 1 },
+      { label: "No, I prefer equality and fairness.", flag: "Controlling Behavior", points: 0 }
+    ]
+  },
+  {
+    question: "When confronted with a mistake, do you often shift blame to others?",
+    answers: [
+      { label: "Yes, I rarely take the blame.", flag: "Dishonesty", points: 2 },
+      { label: "Sometimes, but I try to be honest.", flag: "Dishonesty", points: 1 },
+      { label: "No, I take full responsibility.", flag: "Dishonesty", points: 0 }
+    ]
+  },
+  {
+    question: "Do you regularly disregard someone's boundaries if they aren’t expressed clearly?",
+    answers: [
+      { label: "Yes, I often disregard boundaries.", flag: "Disrespect for Boundaries", points: 2 },
+      { label: "Sometimes, but I try to respect boundaries.", flag: "Disrespect for Boundaries", points: 1 },
+      { label: "No, I always respect boundaries.", flag: "Disrespect for Boundaries", points: 0 }
+    ]
+  },
+  {
+    question: "Do you often manipulate situations to get your way?",
+    answers: [
+      { label: "Yes, I do it often.", flag: "Manipulation", points: 2 },
+      { label: "Sometimes, when I need to.", flag: "Manipulation", points: 1 },
+      { label: "No, I don't manipulate others.", flag: "Manipulation", points: 0 }
+    ]
+  },
+  {
+    question: "Do you avoid facing reality even when it’s clear that things aren’t working out?",
+    answers: [
+      { label: "Yes, I ignore problems and hope they go away.", flag: "Refusal to Grow", points: 2 },
+      { label: "Sometimes, but I try to face issues.", flag: "Refusal to Grow", points: 1 },
+      { label: "No, I try to face reality head-on.", flag: "Refusal to Grow", points: 0 }
+    ]
+  },
+  {
+    question: "Do you become easily aggressive when you don’t get what you want?",
+    answers: [
+      { label: "Yes, I get frustrated and lash out.", flag: "Aggressive Behavior", points: 2 },
+      { label: "Sometimes, but I try to keep my cool.", flag: "Aggressive Behavior", points: 1 },
+      { label: "No, I remain calm and patient.", flag: "Aggressive Behavior", points: 0 }
+    ]
+  },
+  {
+    question: "Do you have difficulty trusting others, even in close relationships?",
+    answers: [
+      { label: "Yes, I often distrust people.", flag: "Insecure Attachment", points: 2 },
+      { label: "Sometimes, but I try to trust others more.", flag: "Insecure Attachment", points: 1 },
+      { label: "No, I trust people easily.", flag: "Insecure Attachment", points: 0 }
+    ]
+  },
+  {
+    question: "How often do you feel like others are intentionally trying to undermine you?",
+    answers: [
+      { label: "Frequently, I feel like everyone is against me.", flag: "Gaslighting", points: 2 },
+      { label: "Sometimes, but I try to let it go.", flag: "Gaslighting", points: 1 },
+      { label: "Never, I feel supported by others.", flag: "Gaslighting", points: 0 }
+    ]
+  },
+  {
+    question: "Do you tend to hide important aspects of your life from others?",
+    answers: [
+      { label: "Yes, I prefer to keep things private.", flag: "Overly Secretive", points: 2 },
+      { label: "Sometimes, but I'm generally open.", flag: "Overly Secretive", points: 1 },
+      { label: "No, I have nothing to hide.", flag: "Overly Secretive", points: 0 }
+    ]
+  },
+  // Repeat similar structure for remaining questions (questions 19-40)
 ];
 
-const form = document.getElementById('quiz-form');
-const progressBar = document.getElementById('progress-bar');
-const resultsContainer = document.getElementById('results');
-
-questions.forEach((q, index) => {
-  const questionDiv = document.createElement('div');
-  questionDiv.classList.add('question');
-
-  const label = document.createElement('label');
-  label.textContent = `${index + 1}. ${q.text}`;
-  questionDiv.appendChild(label);
-
-  const input = document.createElement('input');
-  input.type = 'range';
-  input.min = 1 "strongly disagree";
-  input.max = 5 "strongly agree";
-  input.value = 3 "neutral";
-  input.name = `question-${index}`;
-  input.dataset.category = q.category;
-  input.addEventListener('input', updateProgress);
-  questionDiv.appendChild(input);
-
-  form.appendChild(questionDiv);
-});
-
-function updateProgress() {
-  const answered = [...form.elements].filter(el => el.type === 'range' && el.value);
-  const progress = (answered.length / questions.length) * 100;
-  progressBar.style.width = `${progress}%`;
+// Function to display questions
+function displayQuestions() {
+  const form = document.getElementById("quiz-form");
+  questions.forEach((q, index) => {
+    let questionHTML = `<div class="question">
+                          <p>${q.question}</p>`;
+    q.answers.forEach((answer, i) => {
+      questionHTML += `
+        <input type="radio" id="q${index}a${i}" name="q${index}" value="${answer.points}" />
+        <label for="q${index}a${i}">${answer.label}</label><br />
+      `;
+    });
+    questionHTML += `</div>`;
+    form.innerHTML += questionHTML;
+  });
 }
 
-form.addEventListener('submit', function(e) {
-  e.preventDefault();
-  const scores = {};
+// Function to calculate results
+function calculateResults() {
+  let totalScore = 0;
+  let result = { ...redFlags };
+
   questions.forEach((q, index) => {
-    const input = form.elements[`question-${index}`];
-    const category = q.category;
-    const value = parseInt(input.value);
-    if (!scores[category]) scores[category] = [];
-    scores[category].push(value);
+    const selectedAnswer = document.querySelector(`input[name="q${index}"]:checked`);
+    if (selectedAnswer) {
+      const points = parseInt(selectedAnswer.value);
+      const flag = q.answers.find(a => a.points === points).flag;
+      result[flag] += points;
+    }
   });
 
-  resultsContainer.innerHTML = '<h2>🍓 Your Red Flag Radar 🍓</h2>';
-  for (const category in scores) {
-    const avg = scores[category].reduce((a, b) => a + b, 0) / scores[category].length;
-    const percentage = ((avg - 1) / 4) * 100;
-    const resultItem = document.createElement('div');
-    resultItem.classList.add('result-item');
-    resultItem.innerHTML = `<span>🍓 ${category}:</span> ${percentage.toFixed(1)}%`;
-    resultsContainer.appendChild(resultItem);
+  let resultHTML = "<h2>Results</h2>";
+  for (let flag in result) {
+    let percentage = (result[flag] / 2) * 100;
+    resultHTML += `<p>${flag}: ${percentage.toFixed(2)}%</p>`;
   }
+
+  document.getElementById("results").innerHTML = resultHTML;
+}
+
+document.getElementById("submit-button").addEventListener("click", function(event) {
+  event.preventDefault();
+  calculateResults();
 });
 
+displayQuestions();
