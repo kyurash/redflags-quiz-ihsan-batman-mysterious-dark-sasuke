@@ -1,3 +1,13 @@
+document.addEventListener('DOMContentLoaded', () => {
+  // Make sure the quiz is loaded after the page is fully ready
+  loadQuiz();
+  
+  // Add event listener for submit button
+  document.getElementById('submit-button').addEventListener('click', (event) => {
+    event.preventDefault();
+    calculateResults();
+  });
+});
 const questions = [
   {
     question: "How do you react when someone you are close to cancels plans at the last minute?",
