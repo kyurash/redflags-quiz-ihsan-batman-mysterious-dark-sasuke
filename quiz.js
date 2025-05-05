@@ -1,245 +1,442 @@
-const quizData = [
+// Define the 20 red flag categories (we add one more to reach 20)
+const redFlags = {
+  "Lack of Empathy": 0,
+  "Controlling Behavior": 0,
+  "Dishonesty": 0,
+  "Disrespect for Boundaries": 0,
+  "Jealousy": 0,
+  "Narcissism": 0,
+  "Manipulation": 0,
+  "Disregard for Others' Feelings": 0,
+  "Impulsivity": 0,
+  "Avoiding Responsibility": 0,
+  "Aggressive Behavior": 0,      // This will include both overt aggression and abuse tendencies.
+  "Insecure Attachment": 0,
+  "Gaslighting": 0,
+  "Overly Secretive": 0,
+  "Inconsistent Behavior": 0,
+  "Substance Abuse": 0,
+  "Excessive Dependency": 0,
+  "Refusal to Grow": 0,
+  "Lack of Self-Awareness": 0,
+  "Abuse": 0                   // If you want to track abuse separately, or you can merge it into Aggressive Behavior.
+};
+
+// List of 40 questions – each question is an object with a prompt, a target red flag, and three answer options.
+const questions = [
+  // Q1–Q20
   {
-    question: "You often feel that your thoughts are misunderstood by others.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
+    question: "In group conversations, do you often dismiss or ignore the feelings of others?",
+    flag: "Lack of Empathy",
+    answers: [
+      { label: "Strongly Agree", points: 2 },
+      { label: "Agree", points: 1 },
+      { label: "Disagree", points: 0 }
+    ]
   },
   {
-    question: "You prefer being alone rather than with others, even in social settings.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
+    question: "When making plans, do you insist on having things your way regardless of others’ opinions?",
+    flag: "Controlling Behavior",
+    answers: [
+      { label: "Strongly Agree", points: 2 },
+      { label: "Agree", points: 1 },
+      { label: "Disagree", points: 0 }
+    ]
   },
   {
-    question: "You avoid discussing your emotions, even when it's necessary.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
+    question: "Do you often stretch or distort the truth to suit your narrative?",
+    flag: "Dishonesty",
+    answers: [
+      { label: "Strongly Agree", points: 2 },
+      { label: "Agree", points: 1 },
+      { label: "Disagree", points: 0 }
+    ]
   },
   {
-    question: "You find it difficult to trust others, even when they show care or affection.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
+    question: "Do you disregard personal boundaries even when someone explicitly asks for space?",
+    flag: "Disrespect for Boundaries",
+    answers: [
+      { label: "Strongly Agree", points: 2 },
+      { label: "Agree", points: 1 },
+      { label: "Disagree", points: 0 }
+    ]
   },
   {
-    question: "You tend to get upset or defensive when someone tries to give you advice.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
+    question: "When someone else achieves success, do you find yourself feeling envious?",
+    flag: "Jealousy",
+    answers: [
+      { label: "Strongly Agree", points: 2 },
+      { label: "Agree", points: 1 },
+      { label: "Disagree", points: 0 }
+    ]
   },
   {
-    question: "You often think about past relationships, even though they’re no longer relevant.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
+    question: "Do you frequently believe your opinions are superior to those of others?",
+    flag: "Narcissism",
+    answers: [
+      { label: "Strongly Agree", points: 2 },
+      { label: "Agree", points: 1 },
+      { label: "Disagree", points: 0 }
+    ]
   },
   {
-    question: "You prefer to handle problems on your own rather than asking for help.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
+    question: "Do you manipulate conversations or situations to always get your way?",
+    flag: "Manipulation",
+    answers: [
+      { label: "Strongly Agree", points: 2 },
+      { label: "Agree", points: 1 },
+      { label: "Disagree", points: 0 }
+    ]
   },
   {
-    question: "You frequently feel like you’re the victim in most situations.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
+    question: "Do you routinely prioritize your own feelings while overlooking others’ needs?",
+    flag: "Disregard for Others' Feelings",
+    answers: [
+      { label: "Strongly Agree", points: 2 },
+      { label: "Agree", points: 1 },
+      { label: "Disagree", points: 0 }
+    ]
   },
   {
-    question: "You can be overly critical of yourself, even for small mistakes.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
+    question: "Do you often act impulsively, without considering the consequences?",
+    flag: "Impulsivity",
+    answers: [
+      { label: "Strongly Agree", points: 2 },
+      { label: "Agree", points: 1 },
+      { label: "Disagree", points: 0 }
+    ]
   },
   {
-    question: "You find it hard to let go of past conflicts, even after they’ve been resolved.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
+    question: "When problems arise, do you tend to avoid taking responsibility?",
+    flag: "Avoiding Responsibility",
+    answers: [
+      { label: "Strongly Agree", points: 2 },
+      { label: "Agree", points: 1 },
+      { label: "Disagree", points: 0 }
+    ]
   },
   {
-    question: "You often make decisions impulsively without considering the consequences.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
+    question: "In heated situations, do you resort to verbal or physical aggression?",
+    flag: "Aggressive Behavior",
+    answers: [
+      { label: "Strongly Agree", points: 2 },
+      { label: "Agree", points: 1 },
+      { label: "Disagree", points: 0 }
+    ]
   },
   {
-    question: "You tend to exaggerate situations or make things sound worse than they are.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
+    question: "Do you constantly worry that others will hurt or betray you?",
+    flag: "Insecure Attachment",
+    answers: [
+      { label: "Strongly Agree", points: 2 },
+      { label: "Agree", points: 1 },
+      { label: "Disagree", points: 0 }
+    ]
   },
   {
-    question: "You struggle with setting boundaries in relationships, leading to stress.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
+    question: "Do you twist discussions so that people start doubting their own memory or judgment?",
+    flag: "Gaslighting",
+    answers: [
+      { label: "Strongly Agree", points: 2 },
+      { label: "Agree", points: 1 },
+      { label: "Disagree", points: 0 }
+    ]
   },
   {
-    question: "You feel overwhelmed when there are multiple demands on your time.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
+    question: "Do you prefer to keep important details of your life hidden from others?",
+    flag: "Overly Secretive",
+    answers: [
+      { label: "Strongly Agree", points: 2 },
+      { label: "Agree", points: 1 },
+      { label: "Disagree", points: 0 }
+    ]
   },
   {
-    question: "You often feel that people don’t understand your needs or desires.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
+    question: "Do you often change your opinions or plans, making you seem unpredictable?",
+    flag: "Inconsistent Behavior",
+    answers: [
+      { label: "Strongly Agree", points: 2 },
+      { label: "Agree", points: 1 },
+      { label: "Disagree", points: 0 }
+    ]
   },
   {
-    question: "You find it difficult to admit when you’re wrong, even in small matters.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
+    question: "Do you sometimes use substances to cope with stress or emotions?",
+    flag: "Substance Abuse",
+    answers: [
+      { label: "Strongly Agree", points: 2 },
+      { label: "Agree", points: 1 },
+      { label: "Disagree", points: 0 }
+    ]
   },
   {
-    question: "You often feel that others are judging you or your choices.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
+    question: "Do you rely on others so heavily for emotional support that it feels overwhelming?",
+    flag: "Excessive Dependency",
+    answers: [
+      { label: "Strongly Agree", points: 2 },
+      { label: "Agree", points: 1 },
+      { label: "Disagree", points: 0 }
+    ]
   },
   {
-    question: "You avoid confrontation, even when it means ignoring important issues.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
+    question: "When confronted with criticism, do you refuse to change your ways?",
+    flag: "Refusal to Grow",
+    answers: [
+      { label: "Strongly Agree", points: 2 },
+      { label: "Agree", points: 1 },
+      { label: "Disagree", points: 0 }
+    ]
   },
   {
-    question: "You often feel anxious or fearful about the future, especially in social contexts.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
+    question: "Are you often unaware of how your behavior affects those around you?",
+    flag: "Lack of Self-Awareness",
+    answers: [
+      { label: "Strongly Agree", points: 2 },
+      { label: "Agree", points: 1 },
+      { label: "Disagree", points: 0 }
+    ]
+  },
+
+  // Q21–Q40 (repeating similar themes with slight variations)
+  {
+    question: "Do you often ignore when someone expresses hurt or disappointment?",
+    flag: "Lack of Empathy",
+    answers: [
+      { label: "Strongly Agree", points: 2 },
+      { label: "Agree", points: 1 },
+      { label: "Disagree", points: 0 }
+    ]
   },
   {
-    question: "You tend to feel uncomfortable with vulnerability or showing emotions to others.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
+    question: "When making decisions in a relationship, do you insist on controlling every detail?",
+    flag: "Controlling Behavior",
+    answers: [
+      { label: "Strongly Agree", points: 2 },
+      { label: "Agree", points: 1 },
+      { label: "Disagree", points: 0 }
+    ]
   },
   {
-    question: "You believe that others should prioritize your needs over their own.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
+    question: "Do you often exaggerate facts or omit details to make yourself look better?",
+    flag: "Dishonesty",
+    answers: [
+      { label: "Strongly Agree", points: 2 },
+      { label: "Agree", points: 1 },
+      { label: "Disagree", points: 0 }
+    ]
   },
   {
-    question: "You are sometimes jealous or possessive in relationships.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
+    question: "Do you dismiss others' need for privacy even when they've clearly set boundaries?",
+    flag: "Disrespect for Boundaries",
+    answers: [
+      { label: "Strongly Agree", points: 2 },
+      { label: "Agree", points: 1 },
+      { label: "Disagree", points: 0 }
+    ]
   },
   {
-    question: "You are often overly focused on your own flaws, even when others don’t notice them.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
+    question: "When a friend succeeds, do you struggle to feel happy for them?",
+    flag: "Jealousy",
+    answers: [
+      { label: "Strongly Agree", points: 2 },
+      { label: "Agree", points: 1 },
+      { label: "Disagree", points: 0 }
+    ]
   },
   {
-    question: "You prefer to make decisions based on your feelings, rather than facts or logic.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
+    question: "Do you frequently monopolize conversations with stories of your own achievements?",
+    flag: "Narcissism",
+    answers: [
+      { label: "Strongly Agree", points: 2 },
+      { label: "Agree", points: 1 },
+      { label: "Disagree", points: 0 }
+    ]
   },
   {
-    question: "You feel a need to control situations to feel comfortable or safe.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
+    question: "Do you steer conversations to ensure the focus remains on your perspective?",
+    flag: "Manipulation",
+    answers: [
+      { label: "Strongly Agree", points: 2 },
+      { label: "Agree", points: 1 },
+      { label: "Disagree", points: 0 }
+    ]
   },
   {
-    question: "You often feel overwhelmed by your emotions and find it hard to manage them.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
+    question: "Do you consistently put your needs above those of people close to you?",
+    flag: "Disregard for Others' Feelings",
+    answers: [
+      { label: "Strongly Agree", points: 2 },
+      { label: "Agree", points: 1 },
+      { label: "Disagree", points: 0 }
+    ]
   },
   {
-    question: "You struggle to forgive people, even after they've apologized.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
+    question: "Do you act on impulse, without pausing to think about potential consequences?",
+    flag: "Impulsivity",
+    answers: [
+      { label: "Strongly Agree", points: 2 },
+      { label: "Agree", points: 1 },
+      { label: "Disagree", points: 0 }
+    ]
   },
   {
-    question: "You find it hard to accept compliments or positive feedback.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
+    question: "When mistakes occur, do you quickly shift the blame onto someone else?",
+    flag: "Avoiding Responsibility",
+    answers: [
+      { label: "Strongly Agree", points: 2 },
+      { label: "Agree", points: 1 },
+      { label: "Disagree", points: 0 }
+    ]
   },
   {
-    question: "You tend to make excuses for other people’s mistakes or bad behavior.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
+    question: "In conflicts, do you resort to yelling or even physical force to assert dominance?",
+    flag: "Aggressive Behavior",
+    answers: [
+      { label: "Strongly Agree", points: 2 },
+      { label: "Agree", points: 1 },
+      { label: "Disagree", points: 0 }
+    ]
   },
   {
-    question: "You sometimes ignore warning signs or red flags because you don’t want to be alone.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
+    question: "Do you constantly fear that people you love will abandon or hurt you?",
+    flag: "Insecure Attachment",
+    answers: [
+      { label: "Strongly Agree", points: 2 },
+      { label: "Agree", points: 1 },
+      { label: "Disagree", points: 0 }
+    ]
   },
   {
-    question: "You have difficulty trusting people, even those who are close to you.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
+    question: "Do you often use subtle comments to make others question their memory of events?",
+    flag: "Gaslighting",
+    answers: [
+      { label: "Strongly Agree", points: 2 },
+      { label: "Agree", points: 1 },
+      { label: "Disagree", points: 0 }
+    ]
   },
   {
-    question: "You find it hard to be assertive or express your needs clearly in relationships.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
+    question: "Do you tend to keep significant parts of your life hidden from close friends and family?",
+    flag: "Overly Secretive",
+    answers: [
+      { label: "Strongly Agree", points: 2 },
+      { label: "Agree", points: 1 },
+      { label: "Disagree", points: 0 }
+    ]
   },
   {
-    question: "You tend to avoid talking about serious topics, even when they’re important.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
+    question: "Do you frequently change your stance on issues, confusing those around you?",
+    flag: "Inconsistent Behavior",
+    answers: [
+      { label: "Strongly Agree", points: 2 },
+      { label: "Agree", points: 1 },
+      { label: "Disagree", points: 0 }
+    ]
   },
   {
-    question: "You often feel that you're not good enough or that you don’t measure up.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
+    question: "Do you rely on alcohol or other substances to manage stress or emotions?",
+    flag: "Substance Abuse",
+    answers: [
+      { label: "Strongly Agree", points: 2 },
+      { label: "Agree", points: 1 },
+      { label: "Disagree", points: 0 }
+    ]
   },
   {
-    question: "You frequently feel misunderstood, even when others are trying to understand you.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
+    question: "Do you seek constant emotional reassurance from others, often to an extreme degree?",
+    flag: "Excessive Dependency",
+    answers: [
+      { label: "Strongly Agree", points: 2 },
+      { label: "Agree", points: 1 },
+      { label: "Disagree", points: 0 }
+    ]
   },
   {
-    question: "You have trouble letting go of past trauma or painful experiences.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
+    question: "When others offer advice for improvement, do you dismiss it outright?",
+    flag: "Refusal to Grow",
+    answers: [
+      { label: "Strongly Agree", points: 2 },
+      { label: "Agree", points: 1 },
+      { label: "Disagree", points: 0 }
+    ]
   },
   {
-    question: "You struggle with seeing things from others’ perspectives, especially during disagreements.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
-  },
-  {
-    question: "You prefer to keep your distance from others emotionally to avoid being hurt.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
-  },
-  {
-    question: "You tend to overanalyze situations and make them more complicated than they need to be.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
-  },
-  {
-    question: "You frequently feel overwhelmed by stress, even in low-pressure situations.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
-  },
-  {
-    question: "You avoid conflict, even when it's necessary to address it for the sake of resolution.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
-  },
-  {
-    question: "You tend to blame others for your problems or challenges.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
-  },
-  {
-    question: "You often feel that you don't belong or that you're an outsider in social settings.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
-  },
-  {
-    question: "You tend to make decisions based on emotions rather than rational thought.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
-  },
-  {
-    question: "You find it difficult to connect with others on an emotional level.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
-  },
-  {
-    question: "You are often preoccupied with fears or worries about being rejected.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
-  },
-  {
-    question: "You avoid taking responsibility for your actions, preferring to blame others.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
-  },
-  {
-    question: "You often feel like you are living in the past or stuck in old patterns.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
-  },
-  {
-    question: "You find it hard to ask for what you need in relationships, even when it’s important.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
-  },
-  {
-    question: "You sometimes push people away out of fear of being hurt or rejected.",
-    options: ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
+    question: "Are you often unaware of how your decisions and actions affect those around you?",
+    flag: "Lack of Self-Awareness",
+    answers: [
+      { label: "Strongly Agree", points: 2 },
+      { label: "Agree", points: 1 },
+      { label: "Disagree", points: 0 }
+    ]
   }
 ];
 
-const quizContainer = document.getElementById("quiz-form");
-
-quizData.forEach((item, index) => {
-  const questionElement = document.createElement("div");
-  questionElement.classList.add("question");
-  
-  const questionTitle = document.createElement("h2");
-  questionTitle.textContent = `${index + 1}. ${item.question}`;
-  questionElement.appendChild(questionTitle);
-  
-  item.options.forEach((option, optionIndex) => {
-    const label = document.createElement("label");
-    label.textContent = option;
-
-    const input = document.createElement("input");
-    input.type = "radio";
-    input.name = `question${index}`;
-    input.value = optionIndex + 1;
-
-    questionElement.appendChild(input);
-    questionElement.appendChild(label);
+// -------------------------------
+// DISPLAY QUESTIONS
+// -------------------------------
+function displayQuestions() {
+  const form = document.getElementById("quiz-form");
+  form.innerHTML = ""; // Clear any existing questions
+  questions.forEach((item, index) => {
+    let questionHTML = `<div class="question">
+                          <p>${index + 1}. ${item.question}</p>`;
+    // Create radio buttons for each answer option
+    item.answers.forEach((option, optionIndex) => {
+      questionHTML += `
+        <input type="radio" id="q${index}a${optionIndex}" name="q${index}" value="${option.points}" />
+        <label for="q${index}a${optionIndex}">${option.label}</label><br />
+      `;
+    });
+    questionHTML += `</div>`;
+    form.innerHTML += questionHTML;
   });
-  
-  quizContainer.appendChild(questionElement);
-});
+}
 
+// -------------------------------
+// CALCULATE RESULTS
+// -------------------------------
+// We need to calculate scores per red flag category.
+// Since each question contributes to a specific category, we'll tally the points.
+function calculateResults() {
+  // Create a copy of redFlags to tally scores
+  const tally = { ...redFlags };
+
+  // Also, count the number of questions per category to get maximum possible points.
+  const categoryCount = {};
+  for (let cat in redFlags) {
+    categoryCount[cat] = 0;
+  }
+
+  // Loop through each question, get the selected answer, and add to tally.
+  questions.forEach((item, index) => {
+    const selected = document.querySelector(`input[name="q${index}"]:checked`);
+    if (selected) {
+      const points = parseInt(selected.value);
+      // Increase tally for the corresponding red flag
+      tally[item.flag] += points;
+      categoryCount[item.flag] += 1;
+    }
+  });
+
+  // Build result HTML with percentage for each category.
+  let resultHTML = "<h2>Results</h2>";
+  for (let flag in tally) {
+    // Maximum possible for this category is: (# of questions for category) * 2 points.
+    let maxPoints = categoryCount[flag] * 2;
+    // If no question was answered for this category, skip or set percentage to 0.
+    let percentage = maxPoints ? (tally[flag] / maxPoints) * 100 : 0;
+    resultHTML += `<p>🍓 ${flag}: ${percentage.toFixed(0)}%</p>`;
+  }
+  document.getElementById("results").innerHTML = resultHTML;
+}
+
+// -------------------------------
+// SUBMIT HANDLER
+// -------------------------------
 document.getElementById("submit-button").addEventListener("click", function(event) {
   event.preventDefault();
-  
-  const answers = [];
-  const inputs = document.querySelectorAll("input[type='radio']:checked");
-
-  inputs.forEach(input => {
-    answers.push(parseInt(input.value));
-  });
-  
-  const percentage = (answers.length / quizData.length) * 100;
-  
-  const resultsDiv = document.getElementById("results");
-  resultsDiv.innerHTML = `You answered ${percentage}% of the questions correctly.`;
+  calculateResults();
 });
-]
+
+// Initialize quiz on page load.
+displayQuestions();
