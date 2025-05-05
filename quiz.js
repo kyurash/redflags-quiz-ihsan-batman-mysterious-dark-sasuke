@@ -1,442 +1,199 @@
-// Define the 20 red flag categories (we add one more to reach 20)
-const redFlags = {
-  "Lack of Empathy": 0,
-  "Controlling Behavior": 0,
-  "Dishonesty": 0,
-  "Disrespect for Boundaries": 0,
-  "Jealousy": 0,
-  "Narcissism": 0,
-  "Manipulation": 0,
-  "Disregard for Others' Feelings": 0,
-  "Impulsivity": 0,
-  "Avoiding Responsibility": 0,
-  "Aggressive Behavior": 0,      // This will include both overt aggression and abuse tendencies.
-  "Insecure Attachment": 0,
-  "Gaslighting": 0,
-  "Overly Secretive": 0,
-  "Inconsistent Behavior": 0,
-  "Substance Abuse": 0,
-  "Excessive Dependency": 0,
-  "Refusal to Grow": 0,
-  "Lack of Self-Awareness": 0,
-  "Abuse": 0                   // If you want to track abuse separately, or you can merge it into Aggressive Behavior.
-};
-
-// List of 40 questions – each question is an object with a prompt, a target red flag, and three answer options.
 const questions = [
-  // Q1–Q20
   {
-    question: "In group conversations, do you often dismiss or ignore the feelings of others?",
-    flag: "Lack of Empathy",
-    answers: [
-      { label: "Strongly Agree", points: 2 },
-      { label: "Agree", points: 1 },
-      { label: "Disagree", points: 0 }
-    ]
+    question: "How do you react when someone you are close to cancels plans at the last minute?",
+    answers: ["I get upset and feel like it's a sign of disrespect.", "I understand and don't take it personally.", "I feel anxious and wonder if they’re losing interest.", "I try to rearrange plans to make it work."],
+    categories: ["Inconsistent Behavior", "Trust Issues", "Hypersensitivity to Rejection", "Jealousy"]
   },
   {
-    question: "When making plans, do you insist on having things your way regardless of others’ opinions?",
-    flag: "Controlling Behavior",
-    answers: [
-      { label: "Strongly Agree", points: 2 },
-      { label: "Agree", points: 1 },
-      { label: "Disagree", points: 0 }
-    ]
+    question: "When someone doesn't respond to your message within a few hours, do you feel anxious or upset?",
+    answers: ["Yes, I worry they might be ignoring me or losing interest.", "No, I know they might be busy.", "Sometimes, but I try not to overthink it.", "I get frustrated but try to stay calm."],
+    categories: ["Inconsistent Behavior", "Hypersensitivity to Rejection", "Trust Issues", "Emotional Availability"]
   },
   {
-    question: "Do you often stretch or distort the truth to suit your narrative?",
-    flag: "Dishonesty",
-    answers: [
-      { label: "Strongly Agree", points: 2 },
-      { label: "Agree", points: 1 },
-      { label: "Disagree", points: 0 }
-    ]
+    question: "Do you tend to test people around you to see how much they care or how reliable they are?",
+    answers: ["Yes, I often feel the need to test their loyalty.", "No, I trust people until proven otherwise.", "Sometimes, if I feel uncertain about their intentions.", "Only if I've been let down before."],
+    categories: ["Manipulativeness", "Inconsistent Behavior", "Gaslighting Tendencies", "Hypersensitivity to Rejection"]
   },
   {
-    question: "Do you disregard personal boundaries even when someone explicitly asks for space?",
-    flag: "Disrespect for Boundaries",
-    answers: [
-      { label: "Strongly Agree", points: 2 },
-      { label: "Agree", points: 1 },
-      { label: "Disagree", points: 0 }
-    ]
+    question: "If someone opens up about their personal feelings or struggles quickly, how do you feel?",
+    answers: ["I feel uncomfortable, it’s too soon for that.", "I feel honored they trust me enough to open up.", "I get overwhelmed and unsure how to react.", "I appreciate it and try to offer support."],
+    categories: ["Quick Attachment", "Love Bombing", "Fantasy-Prone", "Dismissive of Red Flags"]
   },
   {
-    question: "When someone else achieves success, do you find yourself feeling envious?",
-    flag: "Jealousy",
-    answers: [
-      { label: "Strongly Agree", points: 2 },
-      { label: "Agree", points: 1 },
-      { label: "Disagree", points: 0 }
-    ]
+    question: "How do you express your emotions when you’re upset or frustrated?",
+    answers: ["I tend to withdraw and avoid talking about it.", "I try to talk through it, but I can get defensive.", "I try to calm down and communicate my feelings.", "I explode and express everything right away."],
+    categories: ["Aggressive Conflict Style", "Lack of Empathy", "Gaslighting Tendencies", "Control Issues"]
   },
   {
-    question: "Do you frequently believe your opinions are superior to those of others?",
-    flag: "Narcissism",
-    answers: [
-      { label: "Strongly Agree", points: 2 },
-      { label: "Agree", points: 1 },
-      { label: "Disagree", points: 0 }
-    ]
+    question: "If you’re not getting the response you expect from someone, do you try to manipulate the situation to get a reaction?",
+    answers: ["Yes, I try to make them feel guilty or pressured.", "No, I just let them be and move on.", "Sometimes, I try to influence things subtly.", "I get frustrated but don't manipulate the situation."],
+    categories: ["Manipulativeness", "Gaslighting Tendencies", "Control Issues", "Inconsistent Behavior"]
   },
   {
-    question: "Do you manipulate conversations or situations to always get your way?",
-    flag: "Manipulation",
-    answers: [
-      { label: "Strongly Agree", points: 2 },
-      { label: "Agree", points: 1 },
-      { label: "Disagree", points: 0 }
-    ]
+    question: "How do you feel when a close friend or family member sets a personal boundary with you?",
+    answers: ["I respect their boundary but feel hurt.", "I get upset and feel like they don't care about me.", "I understand and try to respect it.", "I feel confused but try to accept it."],
+    categories: ["Control Issues", "Lack of Empathy", "Aggressive Conflict Style", "Gaslighting Tendencies"]
   },
   {
-    question: "Do you routinely prioritize your own feelings while overlooking others’ needs?",
-    flag: "Disregard for Others' Feelings",
-    answers: [
-      { label: "Strongly Agree", points: 2 },
-      { label: "Agree", points: 1 },
-      { label: "Disagree", points: 0 }
-    ]
+    question: "Do you often feel uncomfortable if people don't provide emotional support when you're going through something difficult?",
+    answers: ["Yes, I feel unsupported and anxious.", "No, I’m okay handling things on my own.", "Sometimes, but I try to manage myself.", "I get upset, but I try to not show it."],
+    categories: ["Emotional Unavailability", "Lack of Empathy", "Avoidant Attachment", "Dismissive of Red Flags"]
   },
   {
-    question: "Do you often act impulsively, without considering the consequences?",
-    flag: "Impulsivity",
-    answers: [
-      { label: "Strongly Agree", points: 2 },
-      { label: "Agree", points: 1 },
-      { label: "Disagree", points: 0 }
-    ]
+    question: "When someone disagrees with you, do you usually try to win the argument or get the last word?",
+    answers: ["Yes, I can’t let it go until I win.", "No, I try to listen and understand their point.", "Sometimes, I try to get the last word.", "I prefer to end the argument quickly and move on."],
+    categories: ["Aggressive Conflict Style", "Lack of Empathy", "Gaslighting Tendencies", "Narcissism"]
   },
   {
-    question: "When problems arise, do you tend to avoid taking responsibility?",
-    flag: "Avoiding Responsibility",
-    answers: [
-      { label: "Strongly Agree", points: 2 },
-      { label: "Agree", points: 1 },
-      { label: "Disagree", points: 0 }
-    ]
+    question: "How often do you second-guess the intentions of people who are nice or considerate toward you?",
+    answers: ["All the time, I assume there’s an agenda.", "Rarely, I trust people’s kindness.", "Sometimes, especially if it’s too good to be true.", "Only if I have a reason to doubt them."],
+    categories: ["Trust Issues", "Inconsistent Behavior", "Dismissive of Red Flags", "Fantasy-Prone"]
   },
   {
-    question: "In heated situations, do you resort to verbal or physical aggression?",
-    flag: "Aggressive Behavior",
-    answers: [
-      { label: "Strongly Agree", points: 2 },
-      { label: "Agree", points: 1 },
-      { label: "Disagree", points: 0 }
-    ]
+    question: "Do you think it’s okay to lie if it’s done to protect someone's feelings or avoid conflict?",
+    answers: ["Yes, it’s better than causing conflict.", "No, honesty is always the best policy.", "Sometimes, depending on the situation.", "I feel conflicted but understand the need for white lies."],
+    categories: ["Gaslighting Tendencies", "Manipulativeness", "Inconsistent Behavior", "Control Issues"]
   },
   {
-    question: "Do you constantly worry that others will hurt or betray you?",
-    flag: "Insecure Attachment",
-    answers: [
-      { label: "Strongly Agree", points: 2 },
-      { label: "Agree", points: 1 },
-      { label: "Disagree", points: 0 }
-    ]
+    question: "How do you feel if someone doesn’t check in with you or communicate after a significant period of time?",
+    answers: ["I feel abandoned and anxious.", "I understand they might be busy.", "I feel ignored and start to overthink.", "I feel neutral about it and don't worry."],
+    categories: ["Inconsistent Behavior", "Hypersensitivity to Rejection", "Control Issues", "Emotional Availability"]
   },
   {
-    question: "Do you twist discussions so that people start doubting their own memory or judgment?",
-    flag: "Gaslighting",
-    answers: [
-      { label: "Strongly Agree", points: 2 },
-      { label: "Agree", points: 1 },
-      { label: "Disagree", points: 0 }
-    ]
+    question: "Do you feel insecure or frustrated if people around you aren’t openly sharing their feelings with you?",
+    answers: ["Yes, I feel disconnected and unsure of where I stand.", "No, I respect their privacy.", "Sometimes, I want more openness.", "I feel neutral about it."],
+    categories: ["Hypersensitivity to Rejection", "Trust Issues", "Fantasy-Prone", "Quick Attachment"]
   },
   {
-    question: "Do you prefer to keep important details of your life hidden from others?",
-    flag: "Overly Secretive",
-    answers: [
-      { label: "Strongly Agree", points: 2 },
-      { label: "Agree", points: 1 },
-      { label: "Disagree", points: 0 }
-    ]
+    question: "Do you feel annoyed if someone you're close to doesn't post about you on social media?",
+    answers: ["Yes, I feel ignored and unimportant.", "No, I don’t care about social media.", "Sometimes, I wonder if they’re hiding something.", "I feel fine either way."],
+    categories: ["Jealousy", "Control Issues", "Inconsistent Behavior", "Narcissism"]
   },
   {
-    question: "Do you often change your opinions or plans, making you seem unpredictable?",
-    flag: "Inconsistent Behavior",
-    answers: [
-      { label: "Strongly Agree", points: 2 },
-      { label: "Agree", points: 1 },
-      { label: "Disagree", points: 0 }
-    ]
+    question: "How do you react when you hear a friend or family member share a strong opinion or belief that you strongly disagree with?",
+    answers: ["I get defensive and argue.", "I try to understand their point of view.", "I shut down and avoid confrontation.", "I feel frustrated but try to listen."],
+    categories: ["Aggressive Conflict Style", "Lack of Empathy", "Narcissism", "Dismissive of Red Flags"]
   },
   {
-    question: "Do you sometimes use substances to cope with stress or emotions?",
-    flag: "Substance Abuse",
-    answers: [
-      { label: "Strongly Agree", points: 2 },
-      { label: "Agree", points: 1 },
-      { label: "Disagree", points: 0 }
-    ]
+    question: "Do you find it difficult to let go of past conflicts or grievances, even if they are minor?",
+    answers: ["Yes, I can’t stop thinking about it.", "No, I move on quickly.", "Sometimes, I hold on to minor issues.", "I forgive but remember the conflict."],
+    categories: ["Inconsistent Behavior", "Aggressive Conflict Style", "Narcissism", "Lack of Empathy"]
   },
   {
-    question: "Do you rely on others so heavily for emotional support that it feels overwhelming?",
-    flag: "Excessive Dependency",
-    answers: [
-      { label: "Strongly Agree", points: 2 },
-      { label: "Agree", points: 1 },
-      { label: "Disagree", points: 0 }
-    ]
+    question: "How often do you feel the urge to control or micromanage situations around you?",
+    answers: ["Always, I like things to be my way.", "Rarely, I’m okay letting things flow.", "Sometimes, especially when I feel anxious.", "I try to control only when necessary."],
+    categories: ["Control Issues", "Manipulativeness", "Narcissism", "Inconsistent Behavior"]
   },
   {
-    question: "When confronted with criticism, do you refuse to change your ways?",
-    flag: "Refusal to Grow",
-    answers: [
-      { label: "Strongly Agree", points: 2 },
-      { label: "Agree", points: 1 },
-      { label: "Disagree", points: 0 }
-    ]
+    question: "When you receive feedback, how do you usually react—by getting defensive or considering the point of view?",
+    answers: ["I get defensive and explain why I’m right.", "I listen and try to understand their feedback.", "I get offended but think about it later.", "I try to take it constructively."],
+    categories: ["Lack of Accountability", "Aggressive Conflict Style", "Gaslighting Tendencies", "Narcissism"]
   },
   {
-    question: "Are you often unaware of how your behavior affects those around you?",
-    flag: "Lack of Self-Awareness",
-    answers: [
-      { label: "Strongly Agree", points: 2 },
-      { label: "Agree", points: 1 },
-      { label: "Disagree", points: 0 }
-    ]
-  },
-
-  // Q21–Q40 (repeating similar themes with slight variations)
-  {
-    question: "Do you often ignore when someone expresses hurt or disappointment?",
-    flag: "Lack of Empathy",
-    answers: [
-      { label: "Strongly Agree", points: 2 },
-      { label: "Agree", points: 1 },
-      { label: "Disagree", points: 0 }
-    ]
+    question: "Do you find it hard to trust people, even when they have not given you any reason not to?",
+    answers: ["Yes, I tend to doubt their intentions.", "No, I’m generally trusting.", "Sometimes, I get suspicious.", "I trust but stay cautious."],
+    categories: ["Trust Issues", "Avoidant Attachment", "Inconsistent Behavior", "Hypersensitivity to Rejection"]
   },
   {
-    question: "When making decisions in a relationship, do you insist on controlling every detail?",
-    flag: "Controlling Behavior",
-    answers: [
-      { label: "Strongly Agree", points: 2 },
-      { label: "Agree", points: 1 },
-      { label: "Disagree", points: 0 }
-    ]
+    question: "If someone acts differently than you expect, do you become suspicious of their motives or intentions?",
+    answers: ["Yes, I assume there’s something wrong.", "No, I think they just had a bad day.", "Sometimes, I start overthinking.", "I don’t make assumptions."],
+    categories: ["Trust Issues", "Jealousy", "Inconsistent Behavior", "Narcissism"]
   },
   {
-    question: "Do you often exaggerate facts or omit details to make yourself look better?",
-    flag: "Dishonesty",
-    answers: [
-      { label: "Strongly Agree", points: 2 },
-      { label: "Agree", points: 1 },
-      { label: "Disagree", points: 0 }
-    ]
+    question: "How often do you feel that someone is not living up to your expectations and you express frustration about it?",
+    answers: ["Often, I get frustrated if they don’t meet my needs.", "Rarely, I try to understand their limitations.", "Sometimes, I feel disappointed but don’t express it.", "I try to adjust my expectations."],
+    categories: ["Narcissism", "Jealousy", "Lack of Empathy", "Control Issues"]
   },
   {
-    question: "Do you dismiss others' need for privacy even when they've clearly set boundaries?",
-    flag: "Disrespect for Boundaries",
-    answers: [
-      { label: "Strongly Agree", points: 2 },
-      { label: "Agree", points: 1 },
-      { label: "Disagree", points: 0 }
-    ]
+    question: "Do you find it hard to let people in emotionally, even if they show they care for you?",
+    answers: ["Yes, I find it difficult to open up.", "No, I’m comfortable sharing my emotions.", "Sometimes, I find it hard to trust them.", "I prefer to keep my emotions private."],
+    categories: ["Emotional Unavailability", "Avoidant Attachment", "Trust Issues", "Quick Attachment"]
   },
-  {
-    question: "When a friend succeeds, do you struggle to feel happy for them?",
-    flag: "Jealousy",
-    answers: [
-      { label: "Strongly Agree", points: 2 },
-      { label: "Agree", points: 1 },
-      { label: "Disagree", points: 0 }
-    ]
-  },
-  {
-    question: "Do you frequently monopolize conversations with stories of your own achievements?",
-    flag: "Narcissism",
-    answers: [
-      { label: "Strongly Agree", points: 2 },
-      { label: "Agree", points: 1 },
-      { label: "Disagree", points: 0 }
-    ]
-  },
-  {
-    question: "Do you steer conversations to ensure the focus remains on your perspective?",
-    flag: "Manipulation",
-    answers: [
-      { label: "Strongly Agree", points: 2 },
-      { label: "Agree", points: 1 },
-      { label: "Disagree", points: 0 }
-    ]
-  },
-  {
-    question: "Do you consistently put your needs above those of people close to you?",
-    flag: "Disregard for Others' Feelings",
-    answers: [
-      { label: "Strongly Agree", points: 2 },
-      { label: "Agree", points: 1 },
-      { label: "Disagree", points: 0 }
-    ]
-  },
-  {
-    question: "Do you act on impulse, without pausing to think about potential consequences?",
-    flag: "Impulsivity",
-    answers: [
-      { label: "Strongly Agree", points: 2 },
-      { label: "Agree", points: 1 },
-      { label: "Disagree", points: 0 }
-    ]
-  },
-  {
-    question: "When mistakes occur, do you quickly shift the blame onto someone else?",
-    flag: "Avoiding Responsibility",
-    answers: [
-      { label: "Strongly Agree", points: 2 },
-      { label: "Agree", points: 1 },
-      { label: "Disagree", points: 0 }
-    ]
-  },
-  {
-    question: "In conflicts, do you resort to yelling or even physical force to assert dominance?",
-    flag: "Aggressive Behavior",
-    answers: [
-      { label: "Strongly Agree", points: 2 },
-      { label: "Agree", points: 1 },
-      { label: "Disagree", points: 0 }
-    ]
-  },
-  {
-    question: "Do you constantly fear that people you love will abandon or hurt you?",
-    flag: "Insecure Attachment",
-    answers: [
-      { label: "Strongly Agree", points: 2 },
-      { label: "Agree", points: 1 },
-      { label: "Disagree", points: 0 }
-    ]
-  },
-  {
-    question: "Do you often use subtle comments to make others question their memory of events?",
-    flag: "Gaslighting",
-    answers: [
-      { label: "Strongly Agree", points: 2 },
-      { label: "Agree", points: 1 },
-      { label: "Disagree", points: 0 }
-    ]
-  },
-  {
-    question: "Do you tend to keep significant parts of your life hidden from close friends and family?",
-    flag: "Overly Secretive",
-    answers: [
-      { label: "Strongly Agree", points: 2 },
-      { label: "Agree", points: 1 },
-      { label: "Disagree", points: 0 }
-    ]
-  },
-  {
-    question: "Do you frequently change your stance on issues, confusing those around you?",
-    flag: "Inconsistent Behavior",
-    answers: [
-      { label: "Strongly Agree", points: 2 },
-      { label: "Agree", points: 1 },
-      { label: "Disagree", points: 0 }
-    ]
-  },
-  {
-    question: "Do you rely on alcohol or other substances to manage stress or emotions?",
-    flag: "Substance Abuse",
-    answers: [
-      { label: "Strongly Agree", points: 2 },
-      { label: "Agree", points: 1 },
-      { label: "Disagree", points: 0 }
-    ]
-  },
-  {
-    question: "Do you seek constant emotional reassurance from others, often to an extreme degree?",
-    flag: "Excessive Dependency",
-    answers: [
-      { label: "Strongly Agree", points: 2 },
-      { label: "Agree", points: 1 },
-      { label: "Disagree", points: 0 }
-    ]
-  },
-  {
-    question: "When others offer advice for improvement, do you dismiss it outright?",
-    flag: "Refusal to Grow",
-    answers: [
-      { label: "Strongly Agree", points: 2 },
-      { label: "Agree", points: 1 },
-      { label: "Disagree", points: 0 }
-    ]
-  },
-  {
-    question: "Are you often unaware of how your decisions and actions affect those around you?",
-    flag: "Lack of Self-Awareness",
-    answers: [
-      { label: "Strongly Agree", points: 2 },
-      { label: "Agree", points: 1 },
-      { label: "Disagree", points: 0 }
-    ]
-  }
+  // Add more questions as needed (up to 40)
 ];
 
-// -------------------------------
-// DISPLAY QUESTIONS
-// -------------------------------
-function displayQuestions() {
-  const form = document.getElementById("quiz-form");
-  form.innerHTML = ""; // Clear any existing questions
-  questions.forEach((item, index) => {
-    let questionHTML = `<div class="question">
-                          <p>${index + 1}. ${item.question}</p>`;
-    // Create radio buttons for each answer option
-    item.answers.forEach((option, optionIndex) => {
-      questionHTML += `
-        <input type="radio" id="q${index}a${optionIndex}" name="q${index}" value="${option.points}" />
-        <label for="q${index}a${optionIndex}">${option.label}</label><br />
-      `;
+const results = {
+  "Inconsistent Behavior": 0,
+  "Trust Issues": 0,
+  "Hypersensitivity to Rejection": 0,
+  "Jealousy": 0,
+  "Manipulativeness": 0,
+  "Gaslighting Tendencies": 0,
+  "Aggressive Conflict Style": 0,
+  "Narcissism": 0,
+  "Control Issues": 0,
+  "Lack of Empathy": 0,
+  "Emotional Availability": 0,
+  "Emotional Unavailability": 0,
+  "Quick Attachment": 0,
+  "Love Bombing": 0,
+  "Dismissive of Red Flags": 0,
+  "Fantasy-Prone": 0,
+  "Avoidant Attachment": 0,
+  "Lack of Accountability": 0,
+  "Boundary Issues": 0
+};
+
+function loadQuiz() {
+  const quizContainer = document.getElementById('quiz-form');
+  questions.forEach((question, index) => {
+    const questionDiv = document.createElement('div');
+    questionDiv.classList.add('question');
+
+    const questionTitle = document.createElement('h2');
+    questionTitle.textContent = question.question;
+    questionDiv.appendChild(questionTitle);
+
+    question.answers.forEach((answer, answerIndex) => {
+      const answerLabel = document.createElement('label');
+      answerLabel.textContent = answer;
+
+      const answerInput = document.createElement('input');
+      answerInput.type = 'radio';
+      answerInput.name = `question${index}`;
+      answerInput.value = answerIndex + 1;
+
+      answerLabel.prepend(answerInput);
+      questionDiv.appendChild(answerLabel);
     });
-    questionHTML += `</div>`;
-    form.innerHTML += questionHTML;
+
+    quizContainer.appendChild(questionDiv);
   });
 }
 
-// -------------------------------
-// CALCULATE RESULTS
-// -------------------------------
-// We need to calculate scores per red flag category.
-// Since each question contributes to a specific category, we'll tally the points.
 function calculateResults() {
-  // Create a copy of redFlags to tally scores
-  const tally = { ...redFlags };
-
-  // Also, count the number of questions per category to get maximum possible points.
-  const categoryCount = {};
-  for (let cat in redFlags) {
-    categoryCount[cat] = 0;
-  }
-
-  // Loop through each question, get the selected answer, and add to tally.
-  questions.forEach((item, index) => {
-    const selected = document.querySelector(`input[name="q${index}"]:checked`);
-    if (selected) {
-      const points = parseInt(selected.value);
-      // Increase tally for the corresponding red flag
-      tally[item.flag] += points;
-      categoryCount[item.flag] += 1;
-    }
+  const formData = new FormData(document.getElementById('quiz-form'));
+  
+  formData.forEach((value, key) => {
+    const questionIndex = parseInt(key.replace('question', ''));
+    const selectedAnswerIndex = parseInt(value) - 1;
+    
+    questions[questionIndex].categories.forEach(category => {
+      results[category] += selectedAnswerIndex + 1;
+    });
   });
 
-  // Build result HTML with percentage for each category.
-  let resultHTML = "<h2>Results</h2>";
-  for (let flag in tally) {
-    // Maximum possible for this category is: (# of questions for category) * 2 points.
-    let maxPoints = categoryCount[flag] * 2;
-    // If no question was answered for this category, skip or set percentage to 0.
-    let percentage = maxPoints ? (tally[flag] / maxPoints) * 100 : 0;
-    resultHTML += `<p>🍓 ${flag}: ${percentage.toFixed(0)}%</p>`;
-  }
-  document.getElementById("results").innerHTML = resultHTML;
+  displayResults();
 }
 
-// -------------------------------
-// SUBMIT HANDLER
-// -------------------------------
-document.getElementById("submit-button").addEventListener("click", function(event) {
+function displayResults() {
+  const resultsContainer = document.getElementById('results');
+  resultsContainer.innerHTML = '<h3>Your Results:</h3>';
+  
+  Object.keys(results).forEach(category => {
+    const categoryResult = results[category];
+    const percentage = (categoryResult / (questions.length * 4)) * 100;
+    
+    resultsContainer.innerHTML += `
+      <p>${category}: ${percentage.toFixed(2)}%</p>
+    `;
+  });
+}
+
+document.getElementById('submit-button').addEventListener('click', (event) => {
   event.preventDefault();
   calculateResults();
 });
 
-// Initialize quiz on page load.
-displayQuestions();
+loadQuiz();
+]
