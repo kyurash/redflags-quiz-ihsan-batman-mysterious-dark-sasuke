@@ -55,9 +55,9 @@ questions.forEach((q, index) => {
 
   const input = document.createElement('input');
   input.type = 'range';
-  input.min = 1;
-  input.max = 5;
-  input.value = 3;
+  input.min = 1 "strongly disagree";
+  input.max = 5 "strongly agree";
+  input.value = 3 "neutral";
   input.name = `question-${index}`;
   input.dataset.category = q.category;
   input.addEventListener('input', updateProgress);
