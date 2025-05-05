@@ -85,8 +85,6 @@
     margin: 0;
     padding: 10px;
     font-size: 6px;
-    transform: scale(0.6);
-    transform-origin: top left;
   }
 
   h1 {
