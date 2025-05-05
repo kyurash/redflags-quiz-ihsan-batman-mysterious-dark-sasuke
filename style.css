@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🍓Lil Red Flag Quiz🍓</title>
+  <title>🎀🎀🎀</title>
   <style>
     body {
       font-family: 'Comic Sans MS', sans-serif;
@@ -114,7 +114,7 @@
 </head>
 <body>
   <h1>🍓 Welcome to the Red Flag Quiz! 🍓</h1>
-  <button id="start-button" onclick="startQuiz()">Let's gooo ↓</button>
+  <button id="start-button" onclick= >Let's gooo ↓</button>
 
   <div id="quiz-container" style="display: none;">
     <h2>Question 1</h2>
