@@ -60,7 +60,7 @@ input[type="range"] {
   border-radius: 5px;
 }
 
-#submit-button {
+#submit {
   background-color: var(--accent-color);
   color: white;
   border: none;
