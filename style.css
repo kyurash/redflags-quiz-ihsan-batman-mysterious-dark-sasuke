@@ -70,7 +70,7 @@
       left: 10px;
       width: 30px;
       height: 30px;
-      background-image:'https://i.pinimg.com/736x/41/6a/8b/416a8b6f2c999520b281bbe56bbcef41.jpg';
+      background-image: url('https://i.pinimg.com/736x/41/6a/8b/416a8b6f2c999520b281bbe56bbcef41.jpg');
       background-size: contain;
       background-repeat: no-repeat;
     }
