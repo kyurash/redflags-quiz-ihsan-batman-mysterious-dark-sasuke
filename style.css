@@ -12,11 +12,11 @@
       text-align: center;
       margin: 0;
       padding: 0;
-      font-size: 0.45rem;
+      font-size: 0.85rem;
     }
     h1, h2 {
       color: #ff3366;
-      font-size: 0.9rem;
+      font-size: 1.3rem;
       margin-bottom: 5px;
     }
     #quiz-container {
@@ -36,7 +36,7 @@
       border: 1px solid #ff66b2;
     }
     label {
-      font-size: 0.5rem;
+      font-size: 0.9rem;
       margin-left: 6px;
       color: #ff3366;
     }
