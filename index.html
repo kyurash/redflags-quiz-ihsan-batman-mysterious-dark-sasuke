@@ -7,6 +7,53 @@
   <style>
     body {
       font-family: 'Comic Sans MS', sans-serif;
+      background-color: #ffe6f1; /* Light pink */
+      color: #ff66b2; /* Strawberry pink */
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      color: #ff3366;
+      font-size: 2rem;
+      margin-top: 20px;
+      padding-top: 20%;
+    }
+    #start-button {
+      background-color: #ff66b2;
+      border: none;
+      padding: 15px 30px;
+      color: white;
+      font-size: 1.5rem;
+      border-radius: 25px;
+      cursor: pointer;
+      margin-top: 30px;
+    }
+    #start-button:hover {
+      background-color: #ff3366;
+    }
+  </style>
+</head>
+<body>
+  <h1>🍓 Welcome to the Red Flag Personality Quiz! 🍓</h1>
+  <button id="start-button" onclick="startQuiz()">Start Quiz</button>
+
+  <script>
+    function startQuiz() {
+      // Redirect to quiz page
+      window.location.href = 'quiz.html'; // Change this URL to your quiz page
+    }
+  </script>
+</body>
+</html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🍓Lil Red Flag Quiz🍓</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', sans-serif;
       background-color: #fce6f1;
       color: #ff66b2;
       text-align: center;
