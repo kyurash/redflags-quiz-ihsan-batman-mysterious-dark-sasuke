@@ -12,6 +12,7 @@ body {
   color: #d94f70;
   text-align: center;
   padding: 2rem;
+  font-size: 16px; /* Base font size */
 }
 
 /* Container for quiz */
@@ -56,13 +57,44 @@ h1 {
   background-color: #ff85a2;
 }
 
-/* For future quiz questions */
+/* Quiz Questions */
 .question {
   margin-top: 1.5rem;
-  font-size: 1.1rem;
+  font-size: 1.2rem; /* Slightly larger than base */
   color: #a0415e;
 }
 
+/* Answer Options */
 input[type="radio"] {
   margin-right: 0.5rem;
+  transform: scale(1.2); /* Slightly larger for mobile */
+}
+
+/* Responsive */
+@media screen and (max-width: 600px) {
+  body {
+    padding: 1rem;
+    font-size: 15px;
+  }
+
+  .quiz-container {
+    padding: 1.5rem;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .question {
+    font-size: 1.1rem;
+  }
+
+  .start-button {
+    font-size: 1rem;
+    padding: 0.6rem 1.2rem;
+  }
 }
