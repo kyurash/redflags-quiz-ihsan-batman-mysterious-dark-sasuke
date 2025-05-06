@@ -12,7 +12,8 @@ body {
   color: #d94f70;
   text-align: center;
   padding: 2rem;
-  font-size: 16px; /* Base font size */
+  position: relative;
+  overflow: hidden;
 }
 
 /* Container for quiz */
@@ -60,41 +61,74 @@ h1 {
 /* Quiz Questions */
 .question {
   margin-top: 1.5rem;
-  font-size: 1.2rem; /* Slightly larger than base */
+  font-size: 1.3rem; /* Slightly larger for questions */
   color: #a0415e;
 }
 
-/* Answer Options */
-input[type="radio"] {
-  margin-right: 0.5rem;
-  transform: scale(1.2); /* Slightly larger for mobile */
+/* Quiz Answers */
+.answer {
+  font-size: 1rem; /* Slightly smaller for answers */
+  color: #a0415e;
 }
 
-/* Responsive */
-@media screen and (max-width: 600px) {
+input[type="radio"] {
+  margin-right: 0.5rem;
+}
+
+/* Floating Elements */
+.floating-element {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  animation: float 12s linear infinite;
+  opacity: 0.8;
+  z-index: 0;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
   body {
     padding: 1rem;
-    font-size: 15px;
   }
 
   .quiz-container {
-    padding: 1.5rem;
+    padding: 1rem;
   }
 
   h1 {
-    font-size: 2.2rem;
+    font-size: 2rem;
   }
 
   .subtitle {
     font-size: 1rem;
   }
 
-  .question {
-    font-size: 1.1rem;
-  }
-
   .start-button {
     font-size: 1rem;
-    padding: 0.6rem 1.2rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .question {
+    font-size: 1.2rem;
+  }
+
+  .answer {
+    font-size: 0.9rem;
   }
 }
