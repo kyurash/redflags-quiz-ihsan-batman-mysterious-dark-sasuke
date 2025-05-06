@@ -1,71 +1,68 @@
-body {
-  font-family: 'Comic Sans MS', sans-serif;
-  background-color: #fce6f1;
-  color: #ff66b2;
-  text-align: center;
+/* General Reset */
+* {
   margin: 0;
   padding: 0;
-  font-size: 0.45rem;
-  transform: scale(0.5);
-  transform-origin: top left;
+  box-sizing: border-box;
 }
-h1, h2 {
-  color: #ff3366;
-  font-size: 0.9rem;
-  margin-bottom: 5px;
+
+body {
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  background: url('https://i.imgur.com/1fbNVo4.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #d94f70;
+  text-align: center;
+  padding: 2rem;
 }
-#quiz-container {
-  background-color: #f9ccff;
-  padding: 10px;
-  border-radius: 6px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin: 10px auto;
-  width: 90%;
-  max-width: 325px;
+
+/* Container for quiz */
+.quiz-container {
+  background-color: rgba(255, 240, 245, 0.9);
+  border: 4px dashed #fcb8d2;
+  border-radius: 25px;
+  max-width: 700px;
+  margin: auto;
+  padding: 2rem;
+  box-shadow: 0 0 20px rgba(255, 182, 193, 0.4);
 }
-.question {
-  background-color: #ffffff;
-  padding: 6px;
-  border-radius: 4px;
-  margin-bottom: 8px;
-  border: 1px solid #ff66b2;
+
+/* Title Styling */
+h1 {
+  font-size: 2.8rem;
+  color: #ff5b8c;
+  margin-bottom: 0.5rem;
 }
-label {
-  font-size: 0.5rem;
-  margin-left: 6px;
-  color: #ff3366;
+
+/* Subtitle */
+.subtitle {
+  font-size: 1.2rem;
+  color: #b24c63;
+  margin-bottom: 2rem;
 }
-input[type="radio"] {
-  margin-right: 4px;
-  cursor: pointer;
-}
-#submit-button {
-  background-color: #ff66b2;
-  border: none;
-  padding: 6px 12px;
+
+/* Start Button */
+.start-button {
+  background-color: #ffb6c1;
+  border: 2px solid #ff69b4;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
   color: white;
-  font-size: 0.5rem;
   border-radius: 12px;
   cursor: pointer;
-  margin-top: 12px;
+  box-shadow: 0 5px #e06699;
+  transition: 0.2s ease;
 }
-#submit-button:hover {
-  background-color: #ff3366;
+
+.start-button:hover {
+  background-color: #ff85a2;
 }
-#results {
-  background-color: #fff0f5;
-  padding: 12px;
-  border-radius: 6px;
-  margin-top: 15px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+/* For future quiz questions */
+.question {
+  margin-top: 1.5rem;
+  font-size: 1.1rem;
+  color: #a0415e;
 }
-.strawberry {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  width: 30px;
-  height: 30px;
-  background-image: url('https://www.example.com/strawberry.png');
-  background-size: contain;
-  background-repeat: no-repeat;
+
+input[type="radio"] {
+  margin-right: 0.5rem;
 }
