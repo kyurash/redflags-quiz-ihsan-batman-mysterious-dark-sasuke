@@ -7,11 +7,12 @@
 
 body {
   font-family: 'Comic Sans MS', cursive, sans-serif;
-  background: url('https://i.imgur.com/1fbNVo4.jpg') no-repeat center center fixed;
+  background: url('https://i.pinimg.com/736x/41/6a/8b/416a8b6f2c999520b281bbe56bbcef41.jpg') no-repeat center center fixed;
   background-size: cover;
   color: #d94f70;
   text-align: center;
   padding: 2rem;
+}
   position: relative;
   overflow: hidden;
 }
