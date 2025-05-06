@@ -75,3 +75,47 @@ h1 {
 input[type="radio"] {
   margin-right: 0.5rem;
 }
+.strawberry {
+  position: absolute;
+  background-image: url('https://pngtree.com/freepng/watercolor-wind-pink-strawberry-png_5455398.html'); /* Replace with your actual URL */
+  width: 50px;
+  height: 50px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  animation: float-strawberry 10s linear infinite;
+}
+
+.flag {
+  position: absolute;
+  background-image: url('https://pngtree.com/freepng/red-flag-waving-flag_8520179.html'); /* Replace with your actual URL */
+  width: 50px;
+  height: 50px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  animation: float-flag 8s linear infinite;
+}
+
+@keyframes float-strawberry {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  50% {
+    transform: translateX(100px) translateY(100px);
+  }
+  100% {
+    transform: translateX(0) translateY(0);
+  }
+}
+
+@keyframes float-flag {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  50% {
+    transform: translateX(-100px) translateY(-100px);
+  }
+  100% {
+    transform: translateX(0) translateY(0);
+  }
+}
+
