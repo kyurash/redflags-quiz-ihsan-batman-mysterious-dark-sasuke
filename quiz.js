@@ -211,25 +211,25 @@ const questions = [
   }
 
 const results = {
-  "Inconsistent Behavior": 0,
-  "Trust Issues": 0,
-  "Hypersensitivity to Rejection": 0,
-  "Jealousy": 0,
-  "Manipulativeness": 0,
-  "Gaslighting Tendencies": 0,
-  "Aggressive Conflict Style": 0,
-  "Narcissism": 0,
-  "Control Issues": 0,
-  "Lack of Empathy": 0,
-  "Emotional Availability": 0,
-  "Emotional Unavailability": 0,
-  "Quick Attachment": 0,
-  "Love Bombing": 0,
-  "Dismissive of Red Flags": 0,
-  "Fantasy-Prone": 0,
-  "Avoidant Attachment": 0,
-  "Lack of Accountability": 0,
-  "Boundary Issues": 0
+  "🍓Inconsistent Behavior": 0,
+  "🍓Trust Issues": 0,
+  "🍓Hypersensitivity to Rejection": 0,
+  "🍓Jealousy": 0,
+  "🍓Manipulativeness": 0,
+  "🍓Gaslighting Tendencies": 0,
+  "🍓Aggressive Conflict Style": 0,
+  "🍓Narcissism": 0,
+  "🍓Control Issues": 0,
+  "🍓Lack of Empathy": 0,
+  "🍓Emotional Availability": 0,
+  "🍓Emotional Unavailability": 0,
+  "🍓Quick Attachment": 0,
+  "🍓Love Bombing": 0,
+  "🍓Dismissive of Red Flags": 0,
+  "🍓Fantasy-Prone": 0,
+  "🍓Avoidant Attachment": 0,
+  "🍓Lack of Accountability": 0,
+  "🍓Boundary Issues": 0
 };
 
 function loadQuiz() {
