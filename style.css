@@ -65,6 +65,11 @@ h1 {
   font-size: 1rem;
   color: #b24c63;
 }
+  h2 {
+  font-size: 1.2rem; /* 20% larger than 1rem */
+  margin-bottom: 0.5rem;
+  color: #b24c63;
+}
 
 /* Radio button styling */
 input[type="radio"] {
